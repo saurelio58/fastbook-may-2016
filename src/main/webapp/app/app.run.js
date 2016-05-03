@@ -14,7 +14,7 @@
         let loggedIn = personService.isLoggedIn();
 
         if(!loggedIn){
-          event.preventDefault();$state.go('login')
+          event.preventDefault();$state.go('register')
         }
 
       });
