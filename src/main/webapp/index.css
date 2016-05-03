@@ -32,3 +32,23 @@
 .textCenter {
   text-align: center;
 }
+
+.vrepeatContainer #vertical-container {
+    height: 292px;
+    width: 400px;
+  }
+
+  .vrepeatContainer .repeated-item-vertical {
+    border-bottom: 1px solid #ddd;
+    box-sizing: border-box;
+    height: 40px;
+    padding-top: 10px;
+  }
+
+  .vrepeatContainer {
+    margin: 16px;
+  }
+
+  .vrepeatContainer md-virtual-repeat-container {
+    border: solid 1px grey;
+  }
