@@ -9,15 +9,15 @@
 
     function AccessService($http) {
 
-      this.register() {
+      this.register(user) => {
         return $http
           .post('./api/users', user)
           .then(response => response.data)
         }
 
-      this.login() {
+      this.login(email, domain) => {
         return $http
-          .get('./api/users/login')
+          .get('./api/users/'+ email + '/' + domain)
           .then(response => response.data)
       }
 
