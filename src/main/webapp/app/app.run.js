@@ -5,18 +5,16 @@
     .module('fastbook')
     .run(run);
 
-    run.$inject = ['$rootScope', '$state'];
+    run.$inject = ['$rootScope', 'accessService', '$state'];
 
-    function run($rootScope, $state) {
+    function run($rootScope, accessService, $state) {
       $rootScope.$on('$stateChangeStart', function(event, toState, toStateParams){
-
-        let anonymousAllowed = toState.data.anonymousAllowed;
-        let loggedIn = personService.isLoggedIn();
+        //let anonymousAllowed = toState.data.anonymousAllowed;
+        let loggedIn = accessService.isLoggedIn();
 
         if(!loggedIn){
           event.preventDefault();$state.go('register')
         }
-
       });
     }
 
