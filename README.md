@@ -40,7 +40,7 @@ Reference Material
 - Google: [Material Design Specification](https://www.google.com/design/spec/material-design/)  
   The ui-design specification (manifesto?) Google uses to design web and mobile applications. Angular Material is a so-called reference implementation of this specification.
 
-Version 0.1.0 (Day one)
+Version 0.2.0 (Day Two)
 -----------------------
 
 ### Technologies
@@ -76,66 +76,132 @@ Version 0.1.0 (Day one)
 Roadmap
 -------
 
-### Version 0.1.0 (Day One)
+### Version 0.2.0 (Day Two)
 
-#### Stories
-User stories are used to describe functionality in a way that focuses on the actions a User can take at any given point and the outcomes expected by the User for those actions.
-##### a USER
-  - CAN register
-    - IN ORDER TO be able to log in
-  - CAN login
-    - IF the USER has registered
-    - AND the USER is not already logged in
+#### New in Version 0.2.0
+
+##### Stories
+###### a USER
+  - CAN create a group
+    - IF the USER is logged in
     - IN ORDER TO
-      - search for other users (and themselves)
-      - view other user's profiles (and their own)
-      - send friend requests to other users
-      - review pending requests
-  - CAN search for other users (and themselves)
+      - become the new group's owner
+  - CAN view group pages
+    - IF the USER is logged in
+    - IN ORDER TO
+      - view the group's owner
+      - view a list of the group's members
+      - leave a comment on the group's timeline
+      - join or leave the group
+  - CAN join a group
+    - IF the USER is logged in
+    - AND the USER is not the owner of the group (owners are permanent members)
+    - AND the USER is not a member of the group
+    - IN ORDER TO
+      - be able to leave a comment on the group's timeline
+  - CAN leave a group
+    - IF the USER is logged in
+    - AND the USER is not the owner of the group (owners are permanent members)
+    - AND the USER is a member of the group
+  - CAN leave a comment on a group's timeline
+    - IF the USER is logged in
+    - AND the USER is a member (OR owner) of the group
+  - CAN leave a comment on a user's timeline
+    - IF the USER is logged in
+    - AND the USER is friends with the target user
+
+##### Screen Fragments
+###### Timeline
+  - Found on user profiles and group pages
+  - DISPLAY DATA
+    - list of Comments left on the Timeline
+      - reverse-chronological order (newest at the top, oldest at the bottom)
+  - ACTIONS
+    - Leave a Comment
+
+###### Comment
+  - Found in the contents of Timelines
+  - DISPLAY DATA
+    - comment text
+    - creation timestamp
+      - human readable format
+    - author
+      - user's full name
+      - should link to target user's profile
+
+###### Comment Form
+  - Found at the top of Timelines
+    - INPUT DATA
+      - Comment Text
+        - required
+        - at least one character
+    - ACTIONS
+      - Leave a Comment
+        - DISABLED
+          - IF INPUT requirements are not met
+          - OR
+            - IF Timeline is on a user profile
+            - AND LOGGED IN USER is not friends with the target user
+          - OR
+            - IF Timeline is on a group page
+            - AND LOGGED IN USER is not the owner or a member of the target group
+
+##### Screens
+###### Create Group
+  - ACTIONS
+    - Submit
+      - DISABLED if INPUT requirements are not met
+  - INPUT DATA
+    - Group Name
+      - required
+      - unique
+      - at least one character
+
+###### Group Page
+  - Timeline (_screen fragment_)
+  - ACTIONS
+    - Join Group
+      - DISABLED if the LOGGED IN USER is already a member of the Group
+      - DISABLED if the LOGGED IN USER is the owner of the Group (owners are considered members)
+    - Leave Group
+      - DISABLED if the LOGGED IN USER is not a member of the Group
+      - DISABLED if the LOGGED IN USER is the owner of the Group (owners cannot leave their Groups)
+  - DISPLAY DATA
+    - Owner (with link to owner's user profile)
+    - List of Members (each link to the appropriate user profile
+
+
+#### Changed from Version 0.1.0
+
+##### Stories
+###### a USER
+  - CAN search for other users **and groups** (and themselves)
     - IF the USER is logged in
     - by full or partial name
     - IN ORDER TO
       - view a list of search results
       - select a user's profile from the list of results to view
+      - **select a group page from the list of results to view**
   - CAN view other user's profiles (and their own)
     - IF the USER is logged in
     - IN ORDER TO
       - view the selected user's profile information
       - view the selected user's list of friends
+      - **view the selected user's owned pages**
       - send the selected user a friend request
-  - CAN send a friend request to a target user
-    - IF the USER is logged in
-    - AND the target user is not the same as the USER
-    - AND the target user is not already a friend of the USER
-    - AND neither user has a pending friend request from the other
-  - CAN review pending friend requests from other users
-    - IF the USER is logged in
-    - IN ORDER TO
-      - accept or decline any number of pending friend requests from other users
-  - CAN log out
-    - IF the USER is logged in
+      - **leave a comment on the selected user's timeline**
 
-#### Screen Aliases
-
-##### Home Page
-  - DISPLAY
-    - IF the browser url does not match any other screens
-    - OR immediately after logging in or out
-  - IF logged in
-    - show the LOGGED IN USER's User Profile
-  - IF logged out
-    - show User Login
-
-#### Screen Fragments
-##### App Bar
+##### Screen Fragments
+###### App Bar
   - Found on every screen
   - IF logged in
     - DISPLAY DATA
       - Full Name of LOGGED IN USER
     - ACTIONS
-      - Search Users
+      - Search Users **and Groups**
         - DISABLED if search INPUT field is empty
       - Go to LOGGED IN USER's User Profile
+      - **Create Group**
       - View Pending Friend Requests
       - Logout
   - IF logged out
@@ -143,74 +209,26 @@ User stories are used to describe functionality in a way that focuses on the act
       - Go to User Login
       - Go to User Registration
 
-#### Screens
-##### User Registration
-  - ACTIONS
-    - Submit
-      - DISABLED if INPUT requirements are not met
-    - Reset
-      - DISABLED if all INPUT fields are empty or uninitialized
-      - clears INPUT fields / sets defaults
-  - INPUT DATA
-    - Profile Data
-      - First Name
-        - required
-        - at least one character
-      - Last Name
-        - required
-        - at least one character
-      - Birth Date
-        - required
-        - must be in the past
-    - Login Credentials
-      - Email Address
-        - required
-        - unique
-        - must contain `@` character
-        - at least three characters (ex. `x@y`)
-      - Password
-        - required
-        - at least one character
-        - obscured (dots, not characters)
-        - hashed before storage in database
-
-##### User Login
-  - ACTIONS
-    - Login
-      - DISABLED if INPUT requirements are not met
-    - Reset
-      - DISABLED if all INPUT fields are empty or uninitialized
-      - clears INPUT fields
-  - INPUT DATA
-    - Email Address
-      - required
-    - Password
-      - required
-      - obscured
-
-##### User Search Result List
+##### Screens
+###### ~~User~~ Search Result List
   - ACTIONS
     - Go to User's Profile
-      - one for each search result in the DISPLAY DATA
+      - one for each **User-type** search result in the DISPLAY DATA
+    - **Go to Group Page**
+      - **one for each Group-type search result in the DISPLAY DATA**
   - DISPLAY DATA
-    - List of Users whose full names match the search criteria
+    - List of Users **and Groups** whose ~~full~~ names match the search criteria
 
-##### User Profile
+###### User Profile
+  - **Timeline (_screen fragment_)**
   - DISPLAY DATA
     - Full Name (first name and last name)
     - Birthday (day and month)
     - Age (years)
     - Friend List (each with a link to the friend's profile)
+    - **Owned Group List (each with a link to the group page)**
   - ACTIONS
     - Send Friend Request
-      - DISABLED if the LOGGED IN USER and the TARGET USER already have a pending friend request between each other
-      - DISABLED if the LOGGED IN USER and the TARGET USER are already friends
-
-##### Pending Friend Request List
-  - DISPLAY DATA
-    - List of Users who have sent the LOGGED IN USER a friend request
-  - ACTIONS
-    - Accept
-      - one for each pending request in the DISPLAY DATA
-    - Reject
-      - one for each pending request in the DISPLAY DATA
+      - DISABLED
+        - IF the LOGGED IN USER and the TARGET USER already have a pending friend request between each other
+        - OR the LOGGED IN USER and the TARGET USER are already friends
