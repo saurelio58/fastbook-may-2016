@@ -17,9 +17,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.18/angular-ui-router.js"></script>
 <script src="./bower_components/angular-bcrypt/dist/dtrw.bcrypt.js"></script>
 <script src="http://ajax.googleapis.com/ajax/libs/angular_material/1.0.0/angular-material.min.js"></script>
-<script type="text/javascript">
-   angular.module('fastbook', ['ngMaterial']);
-</script>
 
 <base href="/fastbook/" />
 
@@ -49,12 +46,12 @@
 
   <body ng-cloak layout="column">
 
-    <div layout="column" layout-fill>
+    <div layout="row" layout-fill>
       <md-fab-toolbar md-open="open" count="count" md-direction="right">
           <md-fab-trigger class="align-with-text">
 
             <md-button aria-label="menu" class="md-fab md-primary">
-              Fastbook
+              FB
           <!--    <md-icon md-svg-src="img/icons/menu.svg"></md-icon>  -->
             </md-button>
 
@@ -78,27 +75,30 @@
             </md-tooltip>  -->
           </md-button>
 
-          <md-input-container class="md-block">
-              <label>Search</label>
-              <!--<md-icon md-svg-src="" class=""></md-icon>-->
-              <input type="text">
-            </md-input-container>
-
-            <md-button>
-        <!--      <md-icon md-svg-icon="" style="color: #00F;" class="s48" aria-label=""></md-icon>
-              <md-tooltip md-visible="show" md-direction="bottom">
-                Submit
-              </md-tooltip>   -->
-              Submit
-            </md-button>
-
-            <md-button>
+          <md-button>
               Logout
             </md-button>
 
         </md-fab-actions>
       </md-toolbar>
       </md-fab-toolbar>
+
+      <md-input-container class="md-block">
+          <label>Search</label>
+          <!--<md-icon md-svg-src="" class=""></md-icon>-->
+          <input type="text">
+
+          <md-button>
+      <!--      <md-icon md-svg-icon="" style="color: #00F;" class="s48" aria-label=""></md-icon>
+            <md-tooltip md-visible="show" md-direction="bottom">
+              Submit
+            </md-tooltip>   -->
+            Submit
+          </md-button>
+
+        </md-input-container>
+
+
 </div>
     <md-content>
       <div ui-view>
