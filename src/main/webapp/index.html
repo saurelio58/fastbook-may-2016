@@ -38,16 +38,59 @@
 
 </head>
 
-<body ng-app="BlankApp" ng-cloak>
+  <body ng-cloak layout="column">
 
-  
-  <!-- Your application bootstrap  -->
-  <script type="text/javascript">    
-    /**
-     * You must include the dependency on 'ngMaterial' 
-     */
-    angular.module('BlankApp', ['ngMaterial']);
-  </script>
-  
-</body>
+    <div layout="column" layout-fill>
+      <md-fab-toolbar md-open="open" count="count" md-direction="right">
+          <md-fab-trigger class="align-with-text">
+
+            <md-button aria-label="menu" class="md-fab md-primary">
+              <md-icon md-svg-src="img/icons/menu.svg"></md-icon>
+            </md-button>
+
+          </md-fab-trigger>
+          <md-toolbar>
+            <md-fab-actions class="md-toolbar-tools">
+
+          <md-button ng-controller="" ng-click="">
+            <md-icon md-svg-src="img/icons/ic_person_24px.svg"></md-icon>
+            <md-tooltip md-visible="show" md-direction="bottom">
+                Profile
+              </md-tooltip>
+          </md-button>
+
+          <md-button ng-controller="" ng-click="">
+            <md-icon md-svg-icon="social:people" style="color: #00F;" class="s48" aria-label="People Icon"></md-icon>
+            <md-tooltip md-visible="show" md-direction="bottom">
+              Friend Requests
+            </md-tooltip>
+          </md-button>
+
+          <md-input-container class="md-block">
+              <label>Search</label>
+              <!--<md-icon md-svg-src="" class=""></md-icon>-->
+              <input ng-model="user.name" type="text">
+            </md-input-container>
+
+            <md-button ng-controller="" ng-click="">
+              <md-icon md-svg-icon="" style="color: #00F;" class="s48" aria-label=""></md-icon>
+              <md-tooltip md-visible="show" md-direction="bottom">
+                Submit
+              </md-tooltip>
+
+            <md-button ng-controller="" ng-click="">
+              Logout
+            </md-button>
+
+        </md-fab-actions>
+      </md-toolbar>
+      </md-fab-toolbar>
+</div>
+    <md-content>
+      <div ui-view>
+      </div>
+    </md-content>
+
+
+  </body>
 </html>
