@@ -16,7 +16,7 @@ public interface UserDao
 	List<Friend> getMyPendingRequests(Integer id);
 	Friend addFriendRequest(Integer id, User user);
 	List<Friend> acceptFriendRequestFromList(Integer id, Friend friend);
-	List<Friend> denyFriendRequestFromList(Integer id, Friend friend);
+	List<Friend> denyFriendRequestFromList(Integer profileId, Integer senderId);
 	
 	/**
 	 * Returns the relationship between two users 
@@ -32,6 +32,7 @@ public interface UserDao
 	 */
 	Friend getFriendRelation(Integer profileId, Integer loggedInid);
 	Friend acceptFriendRequest(Integer profileId, Friend friend);
-	Friend denyFriendRequest(Integer profileId, Friend friend);
+	Friend denyFriendRequest(Integer profileId, Integer loggedInId);
+	User getByEmail(String email);
 
 }

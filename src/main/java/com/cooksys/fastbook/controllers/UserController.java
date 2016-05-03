@@ -63,39 +63,45 @@ public class UserController
 	
 	// fastbook/api/users/{id}/requests
 	// Request body contains logged in user
-	@RequestMapping(value = "/{id}/requests", method = RequestMethod.PUT)
+	@RequestMapping(value = "/{id}/addRequest", method = RequestMethod.PUT)
 	public Friend addFriendRequest(@PathVariable Integer id, @RequestBody User user)
 	{
 		return userDao.addFriendRequest(id, user);
 	}
 	
-	@RequestMapping(value = "/{id}/requests", method = RequestMethod.PATCH)
+	@RequestMapping(value = "/{id}/acceptRequestFromList", method = RequestMethod.PATCH)
 	public List<Friend> acceptFriendRequestFromList(@PathVariable Integer id, @RequestBody Friend friend)
 	{
 		return userDao.acceptFriendRequestFromList(id, friend);
 	}
 	
-	@RequestMapping(value = "/{id}/requests", method = RequestMethod.DELETE)
-	public List<Friend> denyFriendRequestFromList(@PathVariable Integer id, @RequestBody Friend friend)
+	@RequestMapping(value = "/{profileId}/denyRequestFromList/{senderId}", method = RequestMethod.DELETE)
+	public List<Friend> denyFriendRequestFromList(@PathVariable Integer profileId, @PathVariable Integer senderId)
 	{
-		return userDao.denyFriendRequestFromList(id, friend);
+		return userDao.denyFriendRequestFromList(profileId, senderId);
 	}
 	
 	// fastbook/api/users/{id}/request/{loggedInid}
-	@RequestMapping(value = "/{profileId}/request/{loggedInid}", method = RequestMethod.GET)
+	@RequestMapping(value = "/{profileId}/getRequest/{loggedInid}", method = RequestMethod.GET)
 	public Friend getFriendRelation(@PathVariable Integer profileId, @PathVariable Integer loggedInid)
 	{
 		return userDao.getFriendRelation(profileId, loggedInid);
 	}
-	@RequestMapping(value = "/{id}/request", method = RequestMethod.PATCH)
+	@RequestMapping(value = "/{id}/acceptRequest", method = RequestMethod.PATCH)
 	public Friend acceptFriendRequest(@PathVariable Integer id, @RequestBody Friend friend)
 	{
 		return userDao.acceptFriendRequest(id, friend);
 	}
 	
-	@RequestMapping(value = "/{id}/request", method = RequestMethod.DELETE)
-	public Friend denyFriendRequest(@PathVariable Integer id, @RequestBody Friend friend)
+	@RequestMapping(value = "/{profileId}/denyRequest/{loggedInId}", method = RequestMethod.DELETE)
+	public Friend denyFriendRequest(@PathVariable Integer profileId, @PathVariable Integer loggedInId)
 	{
-		return userDao.denyFriendRequest(id, friend);
+		return userDao.denyFriendRequest(profileId, loggedInId);
+	}
+	
+	@RequestMapping(value = "/login", method = RequestMethod.POST)
+	public User userByEmail(@RequestBody String email)
+	{
+		return userDao.getByEmail(email);
 	}
 }
