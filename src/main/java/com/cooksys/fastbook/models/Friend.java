@@ -19,6 +19,10 @@ import javax.persistence.Table;
 public class Friend implements java.io.Serializable
 {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 2331584131004418951L;
 	private FriendId id;
 	private User userBySentId;
 	private User userByReceivedId;

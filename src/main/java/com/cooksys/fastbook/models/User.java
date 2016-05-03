@@ -27,6 +27,10 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 public class User implements java.io.Serializable
 {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -3647898424236182562L;
 	private Integer id;
 	private String firstName;
 	private String lastName;
