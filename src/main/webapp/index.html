@@ -6,17 +6,20 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <!-- Angular Material style sheet -->
-<link rel="stylesheet" href="./bower_components/angular-material/angular-material.css">
+<link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/angular_material/1.0.0/angular-material.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/4.1.1/normalize.css">
 <link rel="stylesheet" href="./index.css">
 
-<script src="./bower_components/angular/angular.js"></script>
-<script src="./bower_components/angular-material/angular-material.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-animate.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-aria.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-messages.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.18/angular-ui-router.js"></script>
 <script src="./bower_components/angular-bcrypt/dist/dtrw.bcrypt.js"></script>
-<script src="./bower_components/angular-animate/angular-animate.js"></script>
-<script src="./bower_components/angular-aria/angular-aria.js"></script>
-<script src="./bower_components/angular-messages/angular-messages.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/angular_material/1.0.0/angular-material.min.js"></script>
+<script type="text/javascript">
+   angular.module('fastbook', ['ngMaterial']);
+</script>
 
 <base href="/fastbook/" />
 
@@ -51,40 +54,44 @@
           <md-fab-trigger class="align-with-text">
 
             <md-button aria-label="menu" class="md-fab md-primary">
-              <md-icon md-svg-src="img/icons/menu.svg"></md-icon>
+              Fastbook
+          <!--    <md-icon md-svg-src="img/icons/menu.svg"></md-icon>  -->
             </md-button>
 
           </md-fab-trigger>
           <md-toolbar>
             <md-fab-actions class="md-toolbar-tools">
 
-          <md-button ng-controller="" ng-click="">
-            <md-icon md-svg-src="img/icons/ic_person_24px.svg"></md-icon>
+          <md-button>
+            Profile
+        <!--    <md-icon md-svg-src="img/icons/ic_person_24px.svg"></md-icon>
             <md-tooltip md-visible="show" md-direction="bottom">
                 Profile
               </md-tooltip>
-          </md-button>
+    -->      </md-button>
 
-          <md-button ng-controller="" ng-click="">
-            <md-icon md-svg-icon="social:people" style="color: #00F;" class="s48" aria-label="People Icon"></md-icon>
+          <md-button>
+    <!--        <md-icon md-svg-icon="social:people" style="color: #00F;" class="s48" aria-label="People Icon"></md-icon>
             <md-tooltip md-visible="show" md-direction="bottom">
               Friend Requests
-            </md-tooltip>
+            </md-tooltip>  -->
           </md-button>
 
           <md-input-container class="md-block">
               <label>Search</label>
               <!--<md-icon md-svg-src="" class=""></md-icon>-->
-              <input ng-model="user.name" type="text">
+              <input type="text">
             </md-input-container>
 
-            <md-button ng-controller="" ng-click="">
-              <md-icon md-svg-icon="" style="color: #00F;" class="s48" aria-label=""></md-icon>
+            <md-button>
+        <!--      <md-icon md-svg-icon="" style="color: #00F;" class="s48" aria-label=""></md-icon>
               <md-tooltip md-visible="show" md-direction="bottom">
                 Submit
-              </md-tooltip>
+              </md-tooltip>   -->
+              Submit
+            </md-button>
 
-            <md-button ng-controller="" ng-click="">
+            <md-button>
               Logout
             </md-button>
 
