@@ -11,6 +11,10 @@ import javax.persistence.Embeddable;
 public class FriendId implements java.io.Serializable
 {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1670215718346481080L;
 	private int sentId;
 	private int receivedId;
 
