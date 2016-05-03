@@ -82,10 +82,10 @@ public class UserDaoImpl implements UserDao
 		
 		// Find all friend pairings that have been accepted
 		// where one of the userIds matches the id
-		String hql = "select from Friend f "
-				+ "where f.id.sentId = :id "
-				+ "or f.id.receivedId = :id "
-				+ "and f.status = true";
+		String hql = "from Friend f "
+				+ "where (f.userBySentId.id = :id "
+				+ "or f.userByReceivedId.id = :id) "
+				+ "and f.status is not false";
 		
 		List<Friend> friendPairings = session
 				.createQuery(hql)
@@ -95,14 +95,19 @@ public class UserDaoImpl implements UserDao
 		List<User> friends = new ArrayList<User>();
 		
 		for(Friend f : friendPairings)
+		
 		{
 			// If id is sent user add received user
 			if(f.getId().getSentId() == id)
+			{
 				friends.add(f.getUserByReceivedId());
+			}
 				
 			// Otherwise add sent user
 			else
+			{
 				friends.add(f.getUserBySentId());
+			}
 		}
 		
 		return friends;
@@ -116,9 +121,9 @@ public class UserDaoImpl implements UserDao
 		
 		// Find all pending friend requests that have 
 		// been sent to the user matching userId
-		String hql = "select from Friend f "
-				+ "where f.id.receivedId = :id "
-				+ "and f.status = false";
+		String hql = "from Friend f "
+				+ "where f.userByReceivedId.id = :id "
+				+ "and f.status is false";
 		
 		return session
 				.createQuery(hql)
@@ -139,10 +144,10 @@ public class UserDaoImpl implements UserDao
 	 * @return
 	 */
 	@Override
-	public Friend getFriendRelation(Integer profileId, Integer loggedInid)
+	public Friend getFriendRelation(Integer profileId, Integer loggedInId)
 	{
 		Session session = getSession();
-		User loggedInUser = get(loggedInid);
+		User loggedInUser = get(loggedInId);
 		User profileUser = get(profileId);
 		
 		String hql = "from Friend f "
@@ -159,19 +164,19 @@ public class UserDaoImpl implements UserDao
 	}
 
 	@Override
-	public Friend addFriendRequest(Integer id, User user)
+	public Friend addFriendRequest(Integer profileId, User user)
 	{
 		Session session = getSession();
 		
-		User receiver = get(id);
-		FriendId friendId = new FriendId(user.getId(), id);
+		User receiver = get(profileId);
+		FriendId friendId = new FriendId(profileId, user.getId());
 		Friend friend = new Friend();
 		friend.setId(friendId);
 		friend.setUserByReceivedId(receiver);
 		friend.setUserBySentId(user);
 		session.save(friend);
 		
-		return getFriendRelation(id, user.getId());
+		return getFriendRelation(profileId, user.getId());
 	}
 
 	@Override
@@ -180,17 +185,20 @@ public class UserDaoImpl implements UserDao
 		Session session = getSession();
 		
 		friend.setStatus(true);
-		session.save(friend);
+		session.update(friend);
 		
 		return getMyPendingRequests(id);
 	}
 
 	@Override
-	public List<Friend> denyFriendRequestFromList(Integer id, Friend friend)
+	public List<Friend> denyFriendRequestFromList(Integer profileId, Integer senderId)
 	{
 		Session session = getSession();
+		
+		Friend friend = getFriendRelation(profileId, senderId);
+		
 		session.delete(friend);
-		return getMyPendingRequests(id);
+		return getMyPendingRequests(profileId);
 	}
 
 	@Override
@@ -205,25 +213,35 @@ public class UserDaoImpl implements UserDao
 			loggedInUser = get(friend.getId().getSentId());
 		
 		friend.setStatus(true);
-		session.save(friend);
+		session.update(friend);
 		
 		return getFriendRelation(profileId, loggedInUser.getId());
 	}
 
 	@Override
-	public Friend denyFriendRequest(Integer profileId, Friend friend)
+	public Friend denyFriendRequest(Integer profileId, Integer loggedInId)
 	{
 		Session session = getSession();
 
-		User loggedInUser;
-		
-		if(friend.getId().getSentId() == profileId)
-			loggedInUser = get(friend.getId().getReceivedId());
-		else
-			loggedInUser = get(friend.getId().getSentId());
+		Friend friend = getFriendRelation(profileId, loggedInId);
 		
 		session.delete(friend);
-		return getFriendRelation(profileId, loggedInUser.getId());
+		return getFriendRelation(profileId, loggedInId);
+	}
+
+	@Override
+	public User getByEmail(String email)
+	{
+		Session session = getSession();
+		
+		System.out.println(email);
+		String hql = "from User u "
+				+ "where u.email = :email";
+		
+		return (User) session
+				.createQuery(hql)
+				.setParameter("email", email)
+				.uniqueResult();
 	}
 
 }
