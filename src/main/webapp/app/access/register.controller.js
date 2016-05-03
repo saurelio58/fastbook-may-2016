@@ -5,9 +5,11 @@
     .module('fastbook.access')
     .controller('registerController', RegisterController);
 
-    RegisterController.$inject = [];
+    RegisterController.$inject = ['$scope'];
 
-    function RegisterController() {
+    function RegisterController($scope) {
+
+      $scope.myDate = new Date();
 
     }
 
