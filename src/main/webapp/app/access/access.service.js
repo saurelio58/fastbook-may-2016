@@ -9,15 +9,23 @@
 
     function AccessService($http) {
 
-      this.register(user) => {
+<<<<<<< Updated upstream
+      this.register() {
+=======
+      this.register = (user) => {
+>>>>>>> Stashed changes
         return $http
           .post('./api/users', user)
           .then(response => response.data)
-        }
+        };
 
-      this.login(email, domain) => {
+<<<<<<< Updated upstream
+      this.login() {
+=======
+      this.login = (email, domain) => {
+>>>>>>> Stashed changes
         return $http
-          .get('./api/users/'+ email + '/' + domain)
+          .get('./api/users/login')
           .then(response => response.data)
       }
 
