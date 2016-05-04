@@ -14,7 +14,7 @@
       this.register = () => {
         accessService
           .register(this.user)
-          .then(registeredUser => {$state.go('profile', {username: this.user.username})})
+          .then(registeredUser => {$state.go('profile', {userId: registeredUser.userId})})
       }
 
 

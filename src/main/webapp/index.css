@@ -22,9 +22,7 @@
 .spaceAround {
   justify-content: space-around;
 }
-.column > *,
-.row > * {
-  flex: 1;
+.column > *{
   margin: 8px;
 }
 
