@@ -25,12 +25,8 @@
                <label for="password">Password</label>
               </div>
               <div class="input-field">
-                    <input type="date" value="1985-11-26" class="validate" name="birthDate" ng-model=$register.user.birthDate>
+                    <input type="date" class="validate" name="birthDate" ng-model=$register.user.birthDate required>
                     <label for="birthdate">Birthdate</label>
-              </div>
-              <div class="input-field">
-                    <input type="date" class="validate" name="joinDate" min="2016-05-04" ng-model=$register.user.joinDate>
-                    <label for="birthdate">Join Date</label>
               </div>
               <p class="alert alert-danger" ng-show="form-register.password.$error.minlength || form.password.$invalid">Your password must be at least 6 characters.</p>
               <div class="space-top textCenter">

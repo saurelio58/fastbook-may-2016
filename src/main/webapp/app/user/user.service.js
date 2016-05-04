@@ -5,9 +5,11 @@
     .module('fastbook.user')
     .service('userService', UserService);
 
-  UserService.$inject = ['$http', '$log'];
+  UserService.$inject = ['$http', '$log', 'accessService'];
 
-  function UserService($http, $log) {
+  function UserService($http, $log, accessService) {
+
+    this.listOfUsers;
 
     this.getAllUsers = function() {
       return $http
@@ -17,42 +19,53 @@
 
     this.getUsersByName = function(name) {
       return $http
-        .get('./api/users/find' + name)
-        .then(response => response.data);
+        .get('./api/users/find/' + name)
+        .then(response =>{
+          $log.debug(response);
+          return response.data;
+        });
     };
 
-    this.getFriendsById = function(id) {
+    this.getUserById = function(id) {
       return $http
-        .get('./api/' + id + '/friends')
-        .then(response => response.data);
+        .get('./api/users/' + id)
+        .then(response => response.data)
     };
 
-    this.getFriendRequests = function(id) {
+    this.getUsersFriends = function(id) {
       return $http
-        .get('./api/users/' + id + '/my_pending_requests')
-        .then(response => response.data);
+        .get('./api/users/' + id + '/friends')
+        .then(response => response.data)
     };
 
-    // Request body contains logged in user
-    this.addFriendRequest = function(loggedInUser, friendId) {
+    this.getFriendRequestOnProfile = function(id, loggedInUserId) {
       return $http
-        .put('./api/users/' + friendId + '/requests', loggedInUser)
-        .then(response => response.data);
+        .get('./api/users/' + id + '/getRequest/' + loggedInUserId)
+        .then(response => response.data)
     };
 
-    this.acceptFriendRequest = function(friend) {
-      $log.debug('userService - acceptFriendRequest - initialize');
-      this.loggedInUser = loginService.getLoggedInUser();
+    this.sendFriendRequest = function(id, loggedInUser) {
       return $http
-        .patch('./api/' + id + 'requests', friend)
-        .then(response => response.data);
+        .put('./api/users/' + id + '/addRequest', loggedInUser)
+        .then(response => response.data)
     };
 
-    this.rejectFriendRequest = function(friend) {
-      $log.debug('userService - rejectFriendRequest - initialize');
+    this.acceptFriendRequestOnProfile = function(id, friendRequest) {
       return $http
-        .delete('./api/' + id + 'requests', friend)
-        .then(response => response.data);
+        .patch('./api/users/' + id + '/acceptRequest', friendRequest)
+        .then(response => response.data)
+    };
+
+    this.deleteFriendRequestOnProfile = function(id, loggedInUserId) {
+      return $http
+        .delete('./api/users/' + id + '/denyRequest/' + loggedInUserId)
+        .then(response => response.data)
+    };
+
+    this.getUsersFriends = function(id) {
+      return $http
+        .get('./api/users/' + id)
+        .then(response => response.data)
     };
 
 
