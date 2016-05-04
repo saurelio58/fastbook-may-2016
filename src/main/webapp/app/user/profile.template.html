@@ -1,0 +1,44 @@
+<div class="column">
+<div>
+<md-card>
+    <img ng-src="zz_cover_photo.jpg" class="md-card-image" alt="No Photo">
+    <md-card-header>
+       <md-card-avatar>
+          <img class="md-user-avatar" src="zz_userdefaultphoto_small.png">
+       </md-card-avatar>
+       <md-card-header-text>
+          <span class="md-title">{{$profileCtrl.profileUser.firstName}}{{$profileCtrl.profileUser.lastName}}</span>
+          <span class="md-subhead">User since {{$profileCtrl.profileUser.joinDate}}</span>
+       </md-card-header-text>
+    </md-card-header>
+  </md-card>
+  </div>
+ <div class="row">
+ <div class="user-details-list column">
+   <div>
+     {{$profileCtrl.textDefineStatus}}
+   </div>
+<div class="header">
+  About
+ </div>
+ <div>
+   Birthday: {{$profileCtrl.profileUser.birthday}}
+ </div>
+ <div>
+   Age:
+ </div>
+ </div>
+ <div class="friend-list column">
+  <div class="friend-list-item row"
+      ng-repeat="user in $profileCtrl.friendList">
+    <div>
+      {{user.firstName}}
+    </div>
+    <div>
+      {{user.lastName}}
+    </div>
+    <a ui-sref="profile({id: user.id})">Profile</a>
+  </div>
+</div>
+ </div>
+ </div>
