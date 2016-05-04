@@ -7,6 +7,7 @@
 
 <!-- Angular Material style sheet -->
 <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/angular_material/1.0.0/angular-material.min.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/4.1.1/normalize.css">
 <link rel="stylesheet" href="./index.css">
 
@@ -21,8 +22,7 @@
 <base href="/fastbook/" />
 
 <script src="./app/user/user.module.js"></script>
-<script src="./app/user/user.controller.js"></script>
-<script src="./app/user/review-friend-requests.controller.js"></script>
+<script src="./app/user/profile.controller.js"></script>
 <script src="./app/user/user.service.js"></script>
 <script src="./app/user/user.routes.js"></script>
 <script src="./app/user/user.config.js"></script>
@@ -36,11 +36,13 @@
 
 <script src="./app/friend/friend.module.js"></script>
 <script src="./app/friend/friend.controller.js"></script>
+<script src="./app/friend/review-friend-requests.controller.js"></script>
 <script src="./app/friend/friend.service.js"></script>
 <script src="./app/friend/friend.routes.js"></script>
 <script src="./app/friend/friend.config.js"></script>
 
 <script src="./app/app.module.js"></script>
+<script src="./app/app.controller.js"></script>
 <script src="./app/app.config.js"></script>
 <script src="./app/app.run.js"></script>
 
@@ -50,18 +52,21 @@
 
 <body ng-cloak>
 
-    <md-toolbar class="row">
+    <md-toolbar class="row" ng-controller="AppController as app">
       <div class="md-toolbar-tools">
         <h1>
           Fastbook
         </h1>
-        <md-button class="md-raised" aria-label="Login" ng-click="$state.go('login')">
+        <md-button class="md-raised" aria-label="Login" ng-click="$state.go('login')" ng-if="app.accessService.isLoggedOut()">
           Login
+        </md-button>
+        <md-button class="md-raised" aria-label="Logout" ng-click="app.accessService.logout()" ng-if="app.accessService.isLoggedIn()">
+          Logout
         </md-button>
         <md-button class="md-raised" aria-label="Register" ng-click="$state.go('register')">
           Register
         </md-button>
-        <md-button class="md-raised" aria-label="Profile">
+        <md-button class="md-raised" aria-label="Profile" ng-if="app.accessService.isLoggedIn()">
           Profile
         </md-button>
       </div>

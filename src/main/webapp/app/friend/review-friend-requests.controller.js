@@ -2,7 +2,7 @@
 
 (() => {
   angular
-    .module('fastbook.user')
+    .module('fastbook.friend')
     .controller('ReviewFriendRequestsController', ReviewFriendRequestsController);
 
   ReviewFriendRequestsController.$inject = [
