@@ -18,7 +18,7 @@
         // }
 =======
         if(!loggedIn){
-          event.preventDefault();$state.go('login')
+          
         }
 >>>>>>> develop
       });

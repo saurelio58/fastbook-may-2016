@@ -10,11 +10,11 @@
 </md-toolbar>
 
 <md-input-container md-no-float>
-  <input aria-label="email" ng-model="$login.currentUser.email" type="email">
+  <input aria-label="email" ng-model="$login.credentials.email" type="email">
 </md-input-container>
 <md-input-container md-no-float>
-  <input aria-label="password" ng-model="$login.currentUser.password" type="password">
+  <input aria-label="password" ng-model="$login.credentials.password" type="password">
 </md-input-container>
-<md-button aria-label="submit">
+<button aria-label="submit" ng-click="$login.login()">
   Submit
-</md-button>
+</button>

@@ -5,9 +5,9 @@
     .module('fastbook.access')
     .service('accessService', AccessService);
 
-    AccessService.$inject = ['bcrypt', '$http', '$log'];
+    AccessService.$inject = ['bcrypt', '$http', '$log', '$location'];
 
-    function AccessService(bcrypt, $http, $log) {
+    function AccessService(bcrypt, $http, $log, $location) {
       this.currentUser;
 
       this.register = (user) => {
@@ -18,20 +18,27 @@
           .then(user => this.currentUser = user);
         };
 
-      this.login = credentials =>
+      this.login = (credentials) => {
+        $log.debug('Calling AccessService.login()');
         $http
-          .get('./api/users/login', credentials.username)                       // returns response
+          .post('./api/users/login', credentials.email)                          // returns response
           .then(response => response.data)                                      // t response, r user
-          .then(user => user.password)                                          // t user, r password
-          .then(                                                                // t bool, r user
-            authenticated =>
-              authenticated ?
-                $log.debug('User Authenticated')
-                : undefined                                                     // return user (undefined)
-          )
-          .then(user => this.currentUser = user);
-
-        $log.debug(this.currentUser);
+          .then(user => {
+            if(bcrypt.compareSync(credentials.password, user.password)) {
+              $log.debug('User Authenticated');
+              this.currentUser = user;
+              delete this.currentUser.password;
+              $log.debug(this.currentUser);
+              credentials = undefined;
+              $location.path('users/' + this.currentUser.id);
+            }
+            else {
+              $log.debug('invalid username or password');
+              this.currentuser = undefined;
+            }
+          })
+          .catch(error => $log.debug(JSON.stringify(error)));
+      }
 
     this.logout = () => this.currentUser = undefined;
 
