@@ -30,10 +30,17 @@
     };
 
     this.getFriendRequests = function(id) {
-      return $http
-        .get('./api/users/' + id + '/my_pending_requests')
-        .then(response => response.data);
-    };
+
+        $log.debug('friendService - getFriendRequests - initialize');
+
+        return $http
+          .get('./api/users/' + id + '/my_pending_requests')
+          .then(response => {
+            $log.debug('friendService - getFriendRequests - response ' + response);
+            response.data
+
+          });
+      };
 
     // Request body contains logged in user
     this.addFriendRequest = function(loggedInUser, friendId) {
