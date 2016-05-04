@@ -5,9 +5,9 @@
     .module('fastbook.access')
     .service('accessService', AccessService);
 
-    AccessService.$inject = ['bcrypt', '$http', '$log'];
+    AccessService.$inject = ['bcrypt', '$http'];
 
-    function AccessService(bcrypt, $http, $log) {
+    function AccessService(bcrypt, $http) {
       this.currentUser;
 
       this.register = (user) => {
@@ -20,18 +20,11 @@
 
       this.login = credentials =>
         $http
-          .get('./api/users/login', credentials.username)                       // returns response
-          .then(response => response.data)                                      // t response, r user
-          .then(user => user.password)                                          // t user, r password
-          .then(                                                                // t bool, r user
-            authenticated =>
-              authenticated ?
-                $log.debug('User Authenticated')
-                : undefined                                                     // return user (undefined)
-          )
+          .get('./api/users/' + credentials.username)                             // returns response
+          .then(response => response.data)                                        // t response, r user
+          .then(user => user.password)                                            // t user, r password
+          .then(password => bcrypt.compareSync(credentials.password, password))   // t password, r bool
           .then(user => this.currentUser = user);
-
-        $log.debug(this.currentUser);
 
     this.logout = () => this.currentUser = undefined;
 
