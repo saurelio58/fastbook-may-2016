@@ -12,10 +12,12 @@
     this.login = () =>
       accessService
         .login(this.credentials)
-        .then(user => user ? $state.go('profile')
+        .then(user =>
+          user ?
+            $state.go('profile')
+              .then(() => this.credentials = undefined)
             : ($window.alert('invalid username or password')
-                    .then(() => this.credentials = undefined)
-                    .catch(error => $window.alert(JSON.stringify(error)))
+              .catch(error => $window.alert(JSON.stringify(error)))
         ));
   }
 })();
