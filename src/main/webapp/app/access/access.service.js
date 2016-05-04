@@ -5,9 +5,9 @@
     .module('fastbook.access')
     .service('accessService', AccessService);
 
-    AccessService.$inject = ['bcrypt', '$http', '$log', '$location'];
+    AccessService.$inject = ['bcrypt', '$http', '$log', '$location', '$state'];
 
-    function AccessService(bcrypt, $http, $log, $location) {
+    function AccessService(bcrypt, $http, $log, $location, $state) {
       this.currentUser;
 
       this.register = (user) => {
@@ -40,7 +40,12 @@
           .catch(error => $log.debug(JSON.stringify(error)));
       }
 
-    this.logout = () => this.currentUser = undefined;
+    this.logout = () => {
+      this.currentUser = undefined;
+      $state.go('register')
+    }
+
+    this.isLoggedOut = () => this.currentUser == undefined;
 
     this.isLoggedIn = () => this.currentUser !== undefined;
 

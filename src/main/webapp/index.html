@@ -41,24 +41,28 @@
 <script src="./app/friend/friend.config.js"></script>
 
 <script src="./app/app.module.js"></script>
+<script src="./app/app.controller.js"></script>
 <script src="./app/app.config.js"></script>
 <script src="./app/app.run.js"></script>
 </head>
 
 <body ng-cloak>
 
-    <md-toolbar class="row">
+    <md-toolbar class="row" ng-controller="AppController as app">
       <div class="md-toolbar-tools">
         <h1>
           Fastbook
         </h1>
-        <md-button class="md-raised" aria-label="Login" ng-click="$state.go('login')">
+        <md-button class="md-raised" aria-label="Login" ng-click="$state.go('login')" ng-if="app.accessService.isLoggedOut()">
           Login
+        </md-button>
+        <md-button class="md-raised" aria-label="Logout" ng-click="app.accessService.logout()" ng-if="app.accessService.isLoggedIn()">
+          Logout
         </md-button>
         <md-button class="md-raised" aria-label="Register" ng-click="$state.go('register')">
           Register
         </md-button>
-        <md-button class="md-raised" aria-label="Profile">
+        <md-button class="md-raised" aria-label="Profile" ng-if="app.accessService.isLoggedIn()">
           Profile
         </md-button>
       </div>
