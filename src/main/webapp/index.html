@@ -52,8 +52,11 @@
         <h1>
           Fastbook
         </h1>
-        <md-button class="md-raised" aria-label="Login">
+        <md-button class="md-raised" aria-label="Login" ng-click="$state.go('login')">
           Login
+        </md-button>
+        <md-button class="md-raised" aria-label="Register" ng-click="$state.go('register')">
+          Register
         </md-button>
         <md-button class="md-raised" aria-label="Profile">
           Profile
@@ -68,7 +71,6 @@
           </md-button>
       </div>
     </md-toolbar>
-</div>
 <div ui-view>
 </div>
 

@@ -5,19 +5,16 @@
     .module('fastbook.access')
     .controller('LoginController', LoginController);
 
-  LoginController.$inject = ['accessService', '$state', '$window'];
+  LoginController.$inject = ['accessService', '$state', '$window', '$log'];
 
-  function LoginController(accessService, $state, $window) {
+  function LoginController(accessService, $state, $window, $log) {
     this.credentials;
-    this.login = () =>
-      accessService
-        .login(this.credentials)
-        .then(user =>
-          user ?
-            $state.go('profile')
-              .then(() => this.credentials = undefined)
-            : ($window.alert('invalid username or password')
-              .catch(error => $window.alert(JSON.stringify(error)))
-        ));
+
+    $log.debug('Creating LoginController')
+    this.credentials;
+    this.login = () => {
+      $log.debug('Calling LoginController.login()')
+      accessService.login(this.credentials);
+    }
   }
 })();
