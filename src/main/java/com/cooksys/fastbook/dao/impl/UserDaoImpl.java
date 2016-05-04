@@ -234,7 +234,6 @@ public class UserDaoImpl implements UserDao
 	{
 		Session session = getSession();
 		
-		System.out.println(email);
 		String hql = "from User u "
 				+ "where u.email = :email";
 		
