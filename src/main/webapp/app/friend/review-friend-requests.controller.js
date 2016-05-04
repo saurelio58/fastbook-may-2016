@@ -6,16 +6,16 @@
     .controller('ReviewFriendRequestsController', ReviewFriendRequestsController);
 
   ReviewFriendRequestsController.$inject = [
-    'friendRequests', 'friendService', '$log', '$state'
+    'friendRequestsToResolve', 'friendService', '$log', '$state'
   ];
 
   function ReviewFriendRequestsController(
-    friendRequests, friendService, $log, $state
+    friendRequestsToResolve, friendService, $log, $state
   ) {
 
     $log.debug('ReviewFriendRequestsController initialize');
 
-    this.friendRequests = friendRequests;
+    this.friendRequestsToResolve = friendRequestsToResolve;
     this.loggedInFirstName = 'Joshua';
     this.loggedInLastName = 'Dalton';
 
