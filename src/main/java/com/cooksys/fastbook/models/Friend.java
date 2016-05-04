@@ -1,6 +1,6 @@
 package com.cooksys.fastbook.models;
 
-// Generated May 4, 2016 2:37:24 PM by Hibernate Tools 4.3.1
+// Generated May 4, 2016 4:12:00 PM by Hibernate Tools 4.3.1
 
 import javax.persistence.AttributeOverride;
 import javax.persistence.AttributeOverrides;
@@ -51,7 +51,7 @@ public class Friend implements java.io.Serializable {
 		this.id = id;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "sent_id", nullable = false, insertable = false, updatable = false)
 	public User getUserBySentId()
 	{
@@ -63,7 +63,7 @@ public class Friend implements java.io.Serializable {
 		this.userBySentId = userBySentId;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "received_id", nullable = false, insertable = false, updatable = false)
 	public User getUserByReceivedId()
 	{
