@@ -5,7 +5,7 @@
     .module('fastbook.friend')
     .constant('friendRoutes', {
       friendRequests: {
-        url: '/user/requests',
+        url: '/friend/requests',
         templateUrl: 'app/user/review-friend-requests.template.html',
         controller: 'ReviewFriendRequestsController',
         controllerAs: '$requestCtrl',
