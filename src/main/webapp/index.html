@@ -62,8 +62,11 @@
         <md-button class="md-raised" aria-label="Register" ng-click="$state.go('register')">
           Register
         </md-button>
-        <md-button class="md-raised" aria-label="Profile" ng-if="app.accessService.isLoggedIn()">
+        <md-button class="md-raised" aria-label="Profile" ng-click="app.accessService.logout()" ng-if="app.accessService.isLoggedIn()">
           Profile
+        </md-button>
+        <md-button class="md-raised" aria-label="Friend Requests" ng-click="app.accessService.logout()" ng-if="app.accessService.isLoggedIn()">
+          Friend Requests
         </md-button>
       </div>
       <div class="right centered row">
