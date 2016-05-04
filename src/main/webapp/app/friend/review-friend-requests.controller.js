@@ -16,17 +16,19 @@
     $log.debug('ReviewFriendRequestsController initialize');
 
     this.friendRequests = friendRequests;
+    this.loggedInFirstName = 'Joshua';
+    this.loggedInLastName = 'Dalton';
 
-    this.acceptFriendRequest(id) = () => {
+    this.acceptFriendRequest = function(friend) {
       userService
-        .acceptFriendRequest(id)
-        .then($state.reload())
+        .acceptFriendRequest(friend)
+        .then(() => $state.reload())
     };
 
-    this.rejectFriendRequest(id) = () => {
+    this.rejectFriendRequest = function(friend) {
       userService
-        .rejectFriendRequest(id)
-        .then($state.reload())
+        .rejectFriendRequest(friend)
+        .then(() => $state.reload())
     };
 
 

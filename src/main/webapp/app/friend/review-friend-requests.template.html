@@ -1,0 +1,19 @@
+<div id="RequestContainer">
+  <div layout="row" layout-xs="column">
+    <div flex="20" class="md-headline">Friend Requests for:</div>
+    <div flex class="md-title">{{$requestCtrl.loggedInFirstName}} {{$requestCtrl.loggedInLastName}}</div>
+  </div>
+  <div layout="column" layout-xs="column">
+
+    <md-content layout="column">
+      <md-virtual-repeat-container style="width: 100vw; height: 100vh;">
+        <div md-virtual-repeat="request in $requestCtrl.friendRequests" class="repeated-item-vertical">
+          {{request.userBySentId.firstName}} {{request.userBySentId.lastName}}
+          <md-button class="md-raised" ng-click="$requestCtrl.acceptFriendRequest(request)">Accept as Friend</md-button>
+          <md-button class="md-raised" ng-click="$requestCtrl.rejectFriendRequest(request)">Reject Friend Request</md-button>
+        </div>
+      </md-virtual-repeat-container>
+    </md-content>
+
+  </div>
+</div>
