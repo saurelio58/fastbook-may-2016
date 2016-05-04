@@ -15,15 +15,7 @@
       this.register = () => {
         accessService
           .register(this.user)
-<<<<<<< Updated upstream
           .then(registeredUser => {$state.go('profile', {userId: registeredUser.userId})})
-=======
-          .then(registeredUser => {
-            accessService.loggedIn() ?
-            $state.go('profile', {username: this.user.username})
-            :$log.debug('login unsuccessful')
-          })
->>>>>>> Stashed changes
       }
 
       this.goToLogin = () => {

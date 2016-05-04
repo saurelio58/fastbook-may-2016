@@ -8,7 +8,7 @@
         register: {
           url: '/',
           templateUrl: 'app/access/register.template.html',
-          controller: 'registerController',
+          controller: 'RegisterController',
           controllerAs: '$register',
           data: {
             loggedIn: false

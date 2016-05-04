@@ -1,20 +1,16 @@
-<<md-toolbar>
-  <div class="md-toolbar-tools">
-    <h2>
-      <span>Fastbook</span>
-    </h2>
-
-    <md-button aria-label="login" ng-click=""> Login </md-button>
-    <md-button aria-label="register" ng-click=""> Register </md-button>
+<form class="form-login" method="post" name="login">
+  <div class="input-field">
+   <input id="email" type="email" name="email" ng-model="$login.credentials.email" class="validate" required>
+   <label for="email">Email</label>
   </div>
-</md-toolbar>
 
-<md-input-container md-no-float>
-  <input aria-label="email" ng-model="$login.credentials.email" type="email">
-</md-input-container>
-<md-input-container md-no-float>
-  <input aria-label="password" ng-model="$login.credentials.password" type="password">
-</md-input-container>
-<button aria-label="submit" ng-click="$login.login()">
-  Submit
-</button>
+  <p class="alert alert-danger" ng-show="form-register.email.$error.email">Your email is invalid.</p>
+  <div class="input-field">
+    <input id="password" type="password" name="password" ng-model="$login.credentials.password" ng-minlength='6' class="validate" required>
+    <label for="password">Password</label>
+  </div>
+
+  <button type="button" class="waves-effect waves-light btn done" ng-click=$login.login()>
+    <i class="material-icons left"></i> Login
+  </button>
+</form>
