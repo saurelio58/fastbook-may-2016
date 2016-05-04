@@ -1,11 +1,20 @@
-<
+<<md-toolbar>
+  <div class="md-toolbar-tools">
+    <h2>
+      <span>Fastbook</span>
+    </h2>
+
+    <md-button aria-label="login" ng-click=""> Login </md-button>
+    <md-button aria-label="register" ng-click=""> Register </md-button>
+  </div>
+</md-toolbar>
 
 <md-input-container md-no-float>
-  <input ng-model="$login.currentUser.email" type="email">
+  <input aria-label="email" ng-model="$login.currentUser.email" type="email">
 </md-input-container>
 <md-input-container md-no-float>
-  <input ng-model="$login.currentUser.password" type="password">
+  <input aria-label="password" ng-model="$login.currentUser.password" type="password">
 </md-input-container>
-<md-button aria-label="Login">
-  Login
+<md-button aria-label="submit">
+  Submit
 </md-button>

@@ -17,7 +17,7 @@
             $state.go('profile')
               .then(() => this.credentials = undefined)
             : ($window.alert('invalid username or password')
-                    .catch(error => $window.alert(JSON.stringify(error)))
+              .catch(error => $window.alert(JSON.stringify(error)))
         ));
   }
 })();

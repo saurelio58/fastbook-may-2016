@@ -13,7 +13,7 @@
         let loggedIn = accessService.isLoggedIn();
 
         if(!loggedIn){
-          event.preventDefault();$state.go('register')
+          event.preventDefault();$state.go('login')
         }
       });
     }
