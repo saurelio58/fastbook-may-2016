@@ -1,6 +1,6 @@
 package com.cooksys.fastbook.models;
 
-// Generated May 3, 2016 2:05:15 PM by Hibernate Tools 4.3.1
+// Generated May 4, 2016 4:12:00 PM by Hibernate Tools 4.3.1
 
 import javax.persistence.AttributeOverride;
 import javax.persistence.AttributeOverrides;
@@ -20,27 +20,27 @@ import javax.persistence.Table;
 public class Friend implements java.io.Serializable {
 
 	private FriendId id;
-	private boolean status;
-	private User userByReceivedId;
 	private User userBySentId;
+	private User userByReceivedId;
+	private boolean status;
 
 	public Friend()
 	{
 	}
 
-	public Friend(FriendId id, boolean status, User userByReceivedId,
-			User userBySentId)
+	public Friend(FriendId id, User userBySentId, User userByReceivedId,
+			boolean status)
 	{
 		this.id = id;
-		this.status = status;
-		this.userByReceivedId = userByReceivedId;
 		this.userBySentId = userBySentId;
+		this.userByReceivedId = userByReceivedId;
+		this.status = status;
 	}
 
 	@EmbeddedId
 	@AttributeOverrides({
-			@AttributeOverride(name = "receivedId", column = @Column(name = "received_id", nullable = false)),
-			@AttributeOverride(name = "sentId", column = @Column(name = "sent_id", nullable = false)) })
+			@AttributeOverride(name = "sentId", column = @Column(name = "sent_id", nullable = false)),
+			@AttributeOverride(name = "receivedId", column = @Column(name = "received_id", nullable = false)) })
 	public FriendId getId()
 	{
 		return this.id;
@@ -51,15 +51,16 @@ public class Friend implements java.io.Serializable {
 		this.id = id;
 	}
 
-	@Column(name = "status", nullable = false)
-	public boolean isStatus()
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "sent_id", nullable = false, insertable = false, updatable = false)
+	public User getUserBySentId()
 	{
-		return this.status;
+		return this.userBySentId;
 	}
 
-	public void setStatus(boolean status)
+	public void setUserBySentId(User userBySentId)
 	{
-		this.status = status;
+		this.userBySentId = userBySentId;
 	}
 
 	@ManyToOne(fetch = FetchType.EAGER)
@@ -74,16 +75,15 @@ public class Friend implements java.io.Serializable {
 		this.userByReceivedId = userByReceivedId;
 	}
 
-	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "sent_id", nullable = false, insertable = false, updatable = false)
-	public User getUserBySentId()
+	@Column(name = "status", nullable = false)
+	public boolean isStatus()
 	{
-		return this.userBySentId;
+		return this.status;
 	}
 
-	public void setUserBySentId(User userBySentId)
+	public void setStatus(boolean status)
 	{
-		this.userBySentId = userBySentId;
+		this.status = status;
 	}
 
 }
