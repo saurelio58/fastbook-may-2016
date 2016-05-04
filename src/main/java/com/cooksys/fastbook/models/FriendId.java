@@ -1,6 +1,6 @@
 package com.cooksys.fastbook.models;
 
-// Generated May 3, 2016 2:05:15 PM by Hibernate Tools 4.3.1
+// Generated May 4, 2016 2:37:24 PM by Hibernate Tools 4.3.1
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
@@ -11,16 +11,27 @@ import javax.persistence.Embeddable;
 @Embeddable
 public class FriendId implements java.io.Serializable {
 
-	private int receivedId;
 	private int sentId;
+	private int receivedId;
 
 	public FriendId()
 	{
 	}
 
-	public FriendId(int receivedId, int sentId)
+	public FriendId(int sentId, int receivedId)
 	{
+		this.sentId = sentId;
 		this.receivedId = receivedId;
+	}
+
+	@Column(name = "sent_id", nullable = false)
+	public int getSentId()
+	{
+		return this.sentId;
+	}
+
+	public void setSentId(int sentId)
+	{
 		this.sentId = sentId;
 	}
 
@@ -35,15 +46,27 @@ public class FriendId implements java.io.Serializable {
 		this.receivedId = receivedId;
 	}
 
-	@Column(name = "sent_id", nullable = false)
-	public int getSentId()
+	public boolean equals(Object other)
 	{
-		return this.sentId;
+		if ((this == other))
+			return true;
+		if ((other == null))
+			return false;
+		if (!(other instanceof FriendId))
+			return false;
+		FriendId castOther = (FriendId) other;
+
+		return (this.getSentId() == castOther.getSentId())
+				&& (this.getReceivedId() == castOther.getReceivedId());
 	}
 
-	public void setSentId(int sentId)
+	public int hashCode()
 	{
-		this.sentId = sentId;
+		int result = 17;
+
+		result = 37 * result + this.getSentId();
+		result = 37 * result + this.getReceivedId();
+		return result;
 	}
 
 }
