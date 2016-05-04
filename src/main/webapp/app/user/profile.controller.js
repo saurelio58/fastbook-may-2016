@@ -55,22 +55,15 @@
     angular.forEach(this.friendList, function(value, key) {
       userService
         .getFriendRequestOnProfile(value.id, this.loggedInUserId.id)
-
       });
 
     this.getStatusText = () => {
-      if(this.friendRequest.status === true)
-      {
-        this.textDefineStatus = 'You and ' + profileUser.firstName + ' ' + profileUser.lastName + ' are friends.';
-      }
-      else if(this.friendRequest.status === false)
-      {
-        this.textDefineStatus = 'Friend request pending.';
-      }
-      else
-      {
-        this.textDefineStatus = 'You and ' + profileUser.firstName + ' ' + profileUser.lastName + ' are not currently friends.';
-      }
+      if(this.friendRequest.status === true){
+        this.textDefineStatus = 'You and ' + profileUser.firstName + ' ' + profileUser.lastName + ' are friends.';}
+      else if(this.friendRequest.status === false){
+        this.textDefineStatus = 'Friend request pending.';}
+      else{
+        this.textDefineStatus = 'You and ' + profileUser.firstName + ' ' + profileUser.lastName + ' are not currently friends.';}
     };
   }
 })();

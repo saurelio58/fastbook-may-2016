@@ -37,14 +37,13 @@
       data: {
         loggedIn: false
       }
+    },
+
       search: {
         url: '/user',
         templateUrl: 'app/nav_bar/nav.template.html',
         controller: 'NavController',
         controllerAs: '$nav'
       }
-
-
     })
-
 })();

@@ -67,9 +67,5 @@
         .get('./api/users/' + id)
         .then(response => response.data)
     };
-
-
-
   }
-
 })();
