@@ -1,0 +1,15 @@
+<div id="RequestContainer" ng-controller="RequestController as $requestCtrl" ng-cloak>
+  <div layout="row" layout-xs="column">
+    <div flex="20" class="md-title">Friend Requests for:</div>
+    <div flex class="md-headline">{{$requestCtrl.loggedInFirstName}} {{$requestCtrl.loggedInLastName}}</div>
+  </div>
+  <div layout="column" layout-xs="column">
+    < <md-virtual-repeat-container id="vertical-container">
+      <div md-virtual-repeat="request in $requestCtrl.friendRequests" class="repeated-item-vertical" flex>
+        {{$requestCtrl.userByReceivedId.FirstName}}first name {{$requestCtrl.userByReceivedId.lasttName}} last name
+        <md-button class="md-raised" ng-click="$requestCtrl.acceptFriendRequest({friend: request.userByReceivedId})">Accept as Friend</md-button>
+        <md-button class="md-raised" ng-click="$requestCtrl.rejectFriendRequest({friend: request.userByReceivedId})">Reject Friend Request</md-button>
+      </div>
+      </md-virtual-repeat-container>
+  </div>
+</div>

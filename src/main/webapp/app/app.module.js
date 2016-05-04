@@ -5,6 +5,7 @@
     .module('fastbook',
     [
       'ngMaterial',
+      'ngMessages',
       'ui.router',
       'dtrw.bcrypt',
       'fastbook.user',

@@ -21,7 +21,8 @@
 <base href="/fastbook/" />
 
 <script src="./app/user/user.module.js"></script>
-<script src="./app/user/user.controller.js"></script>
+<script src="./app/user/user-create.controller.js"></script>
+<script src="./app/user/review-friend-requests.controller.js"></script>
 <script src="./app/user/user.service.js"></script>
 <script src="./app/user/user.routes.js"></script>
 <script src="./app/user/user.config.js"></script>
@@ -44,67 +45,40 @@
 <script src="./app/app.run.js"></script>
 </head>
 
-  <body ng-cloak layout="column">
+  <body ng-cloak>
 
-    <div layout="row" layout-fill>
-      <md-fab-toolbar md-open="open" count="count" md-direction="right">
-          <md-fab-trigger class="align-with-text">
-
-            <md-button aria-label="menu" class="md-fab md-primary">
-              FB
-          <!--    <md-icon md-svg-src="img/icons/menu.svg"></md-icon>  -->
-            </md-button>
-
-          </md-fab-trigger>
-          <md-toolbar>
-            <md-fab-actions class="md-toolbar-tools">
-
-          <md-button>
-            Profile
-        <!--    <md-icon md-svg-src="img/icons/ic_person_24px.svg"></md-icon>
-            <md-tooltip md-visible="show" md-direction="bottom">
-                Profile
-              </md-tooltip>
-    -->      </md-button>
-
-          <md-button>
-            Friend Requests
-    <!--        <md-icon md-svg-icon="social:people" style="color: #00F;" class="s48" aria-label="People Icon"></md-icon>
-            <md-tooltip md-visible="show" md-direction="bottom">
-              Friend Requests
-            </md-tooltip>  -->
-          </md-button>
-
-          <md-button>
-              Logout
-            </md-button>
-
-        </md-fab-actions>
-      </md-toolbar>
-      </md-fab-toolbar>
-
-      <md-input-container class="md-block">
-          <label>Search</label>
-          <!--<md-icon md-svg-src="" class=""></md-icon>-->
-          <input type="text">
-
-          <md-button>
-      <!--      <md-icon md-svg-icon="" style="color: #00F;" class="s48" aria-label=""></md-icon>
-            <md-tooltip md-visible="show" md-direction="bottom">
-              Submit
-            </md-tooltip>   -->
-            Submit
-          </md-button>
-
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <h2>
+          <span>Fastbook</span>
+        </h2>
+        <md-input-container md-no-float>
+          <input ng-model="$login.user.email" type="email">
         </md-input-container>
-
-
-</div>
-    <md-content>
-      <div ui-view>
+        <md-input-container md-no-float>
+          <input ng-model="$login.user.password" type="password">
+        </md-input-container>
+        <md-button aria-label="Login">
+          Login
+        </md-button>
+        <md-button aria-label="Register">
+          Register
+        </md-button>
+        <md-button class="md-raised" aria-label="Profile">
+          Profile
+        </md-button>
+        <md-input-container class="md-block">
+          <label>Search</label>
+          <input type="text">
+        </md-input-container>
+        <md-button class="md-raised" aria-label="Submit">
+          Submit
+        </md-button>
       </div>
-    </md-content>
-
+    </md-toolbar>
+</div>
+<div ui-view>
+</div>
 
   </body>
 </html>
