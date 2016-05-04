@@ -1,13 +1,13 @@
 <div class="column">
 <div>
 <md-card>
-    <img ng-src="zz_cover_photo.jpg" class="md-card-image" alt="No Photo">
+    <img ng-src="app/user/zz_cover_photo.jpg" class="md-card-image" alt="No Photo">
     <md-card-header>
        <md-card-avatar>
-          <img class="md-user-avatar" src="zz_userdefaultphoto_small.png">
+          <img class="md-user-avatar" src="app/user/zz_userdefaultphoto_small.png">
        </md-card-avatar>
        <md-card-header-text>
-          <span class="md-title">{{$profileCtrl.profileUser.firstName}}{{$profileCtrl.profileUser.lastName}}</span>
+          <span class="md-title">{{$profileCtrl.profileUser.firstName}} {{$profileCtrl.profileUser.lastName}}</span>
           <span class="md-subhead">User since {{$profileCtrl.profileUser.joinDate}}</span>
        </md-card-header-text>
     </md-card-header>
@@ -22,7 +22,7 @@
   About
  </div>
  <div>
-   Birthday: {{$profileCtrl.profileUser.birthday}}
+   Birthday: {{$profileCtrl.profileUser.birthDate}}
  </div>
  <div>
    Age:

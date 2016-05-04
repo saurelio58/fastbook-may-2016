@@ -9,6 +9,8 @@
 
   function UserService($http, $log, accessService) {
 
+    this.listOfUsers;
+
     this.getAllUsers = function() {
       return $http
         .get('./api/users/')
@@ -17,8 +19,11 @@
 
     this.getUsersByName = function(name) {
       return $http
-        .get('./api/users/find' + name)
-        .then(response => response.data);
+        .get('./api/users/find/' + name)
+        .then(response =>{
+          $log.debug(response);
+          return response.data;
+        });
     };
 
     this.getUserById = function(id) {

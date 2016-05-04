@@ -45,6 +45,9 @@
 <script src="./app/app.controller.js"></script>
 <script src="./app/app.config.js"></script>
 <script src="./app/app.run.js"></script>
+
+<script src="./app/nav_bar/nav.controller.js"></script>
+
 </head>
 
 <body ng-cloak>
@@ -70,11 +73,11 @@
           Friend Requests
         </md-button>
       </div>
-      <div class="right centered row">
+      <div class="right centered row" ng-controller="NavController as nav">
           <div>
-            <input type="text" md-placeholder="Search">
+            <input type="text" md-placeholder="Search" ng-model="nav.userName">
           </div>
-          <md-button class="md-raised" aria-label="Submit">
+          <md-button class="md-raised" aria-label="Submit" ng-click="nav.searchNames()">
             Submit
           </md-button>
       </div>
