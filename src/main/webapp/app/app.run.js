@@ -5,19 +5,24 @@
     .module('fastbook')
     .run(run);
 
-    run.$inject = ['$rootScope', 'accessService', '$state', '$stateParams'];
+  run.$inject = ['$rootScope', 'accessService', '$state', '$stateParams', '$log'];
 
-    function run($rootScope, accessService, $state, $stateParams) {
-      $rootScope.$state = $state;
-      $rootScope.$stateParams = $stateParams;
+  function run($rootScope, accessService, $state, $stateParams, $log) {
+    $rootScope.$state = $state;
+    $rootScope.$stateParams = $stateParams;
 
-      $rootScope.$on('$stateChangeStart', function(event, toState, toStateParams){
-        let loggedIn = accessService.isLoggedIn();
+    $log.debug('app.run.js - before $state.go');
 
-        // if(!loggedIn){
-        //   event.preventDefault();$state.go('login')
-        // }
-      });
-    }
+    $state.go('friendRequests')
+
+    $log.debug('app.run.js- after $state.go');
+
+    // $rootScope.$on('$stateChangeStart', function(event, toState, toStateParams) {
+    //   let loggedIn = accessService.isLoggedIn();
+      // if(!loggedIn){
+      //   event.preventDefault();$state.go('login')
+      // }
+    // });
+  }
 
 })();
