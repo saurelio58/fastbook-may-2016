@@ -15,14 +15,13 @@
 <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-aria.min.js"></script>
 <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-messages.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.18/angular-ui-router.js"></script>
-<script src="./bower_components/angular-bcrypt/dist/dtrw.bcrypt.js"></script>
 <script src="http://ajax.googleapis.com/ajax/libs/angular_material/1.0.0/angular-material.min.js"></script>
+<script src="./bower_components/angular-bcrypt/dist/dtrw.bcrypt.js"></script>
 
 <base href="/fastbook/" />
 
 <script src="./app/user/user.module.js"></script>
-<script src="./app/user/user-create.controller.js"></script>
-<script src="./app/user/review-friend-requests.controller.js"></script>
+<script src="./app/user/user.controller.js"></script>
 <script src="./app/user/user.service.js"></script>
 <script src="./app/user/user.routes.js"></script>
 <script src="./app/user/user.config.js"></script>
@@ -47,33 +46,25 @@
 
   <body ng-cloak>
 
-    <md-toolbar>
+    <md-toolbar class="row">
       <div class="md-toolbar-tools">
-        <h2>
-          <span>Fastbook</span>
-        </h2>
-        <md-input-container md-no-float>
-          <input ng-model="$login.user.email" type="email">
-        </md-input-container>
-        <md-input-container md-no-float>
-          <input ng-model="$login.user.password" type="password">
-        </md-input-container>
-        <md-button aria-label="Login">
+        <h1>
+          Fastbook
+        </h1>
+        <md-button class="md-raised" aria-label="Login">
           Login
-        </md-button>
-        <md-button aria-label="Register">
-          Register
         </md-button>
         <md-button class="md-raised" aria-label="Profile">
           Profile
         </md-button>
-        <md-input-container class="md-block">
-          <label>Search</label>
-          <input type="text">
-        </md-input-container>
-        <md-button class="md-raised" aria-label="Submit">
-          Submit
-        </md-button>
+      </div>
+      <div class="right centered row">
+          <div>
+            <input type="text" md-placeholder="Search">
+          </div>
+          <md-button class="md-raised" aria-label="Submit">
+            Submit
+          </md-button>
       </div>
     </md-toolbar>
 </div>

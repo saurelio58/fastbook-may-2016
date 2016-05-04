@@ -6,9 +6,9 @@
     .constant('accessRoutes', {
 
         register: {
-          url: '/register',
+          url: '/',
           templateUrl: 'app/access/register.template.html',
-          controller: 'RegisterController',
+          controller: 'registerController',
           controllerAs: '$register',
           data: {
             loggedIn: false

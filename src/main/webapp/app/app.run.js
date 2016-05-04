@@ -12,9 +12,9 @@
         //let anonymousAllowed = toState.data.anonymousAllowed;
         let loggedIn = accessService.isLoggedIn();
 
-        if(!loggedIn){
-          event.preventDefault();$state.go('register')
-        }
+        // if(!loggedIn){
+        //   event.preventDefault();$state.go('login')
+        // }
       });
     }
 

@@ -5,9 +5,19 @@
   .module('fastbook')
   .config(config);
 
-  config.$inject = ['$urlRouterProvider', '$locationProvider', '$mdThemingProvider'];
+  config.$inject = [
+    '$urlRouterProvider',
+    '$locationProvider',
+    '$mdThemingProvider',
+    '$mdDateLocaleProvider'
+  ];
 
-  function config($urlRouterProvider, $locationProvider, $mdThemingProvider) {
+  function config(
+    $urlRouterProvider,
+    $locationProvider,
+    $mdThemingProvider,
+    $mdDateLocaleProvider
+  ) {
     $urlRouterProvider.otherwise('/');
     $locationProvider.html5Mode(true);
 
@@ -15,5 +25,4 @@
       .primaryPalette('yellow')
       .dark();
   }
-
 })();
