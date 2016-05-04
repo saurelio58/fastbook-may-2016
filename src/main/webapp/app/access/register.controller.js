@@ -10,9 +10,10 @@
     function RegisterController($scope, accessService, $state, $log) {
 
       $log.debug('Creating $register');
-      $scope.myDate = new Date();
+      $scope.date = new Date();
 
       this.register = () => {
+        this.user.joinDate = $scope.date;
         accessService
           .register(this.user)
           .then(registeredUser => {$state.go('profile', {userId: registeredUser.userId})})
