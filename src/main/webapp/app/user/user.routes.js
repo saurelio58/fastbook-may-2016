@@ -23,8 +23,6 @@
       data: {
         loggedIn: false
       }
-
-
-    })
-
+    }
+})
 })();
