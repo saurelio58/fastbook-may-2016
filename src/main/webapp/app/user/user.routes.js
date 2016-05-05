@@ -17,16 +17,19 @@
             return userService.getUserFriends($stateParams.id);
           }]
         },
-        data: {
-          loggedIn: true
-        }
+      data: {
+        loggedIn: true
       },
+    },
 
       search: {
         url: '/user',
         templateUrl: 'app/nav_bar/nav.template.html',
         controller: 'NavController',
-        controllerAs: '$nav'
+        controllerAs: '$nav',
+        data: {
+          loggedIn: true
+        }
       }
     })
 })();
