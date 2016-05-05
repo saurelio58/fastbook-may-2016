@@ -7,7 +7,7 @@
 
   FriendService.$inject = ['$http', '$log'];
 
-  function FriendService($http) {
+  function FriendService($http, $log) {
 
     this.acceptFriendRequest = function(friend) {
       return $http
