@@ -22,7 +22,7 @@
       data: {
         loggedIn: true
       },
-    },
+    }
 
       search: {
         url: '/user',
