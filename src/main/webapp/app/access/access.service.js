@@ -11,11 +11,18 @@
       this.currentUser;
 
       this.register = (user) => {
-
+        let salt = bcrypt.genSaltSync(4);
+        let hash = bcrypt.hashSync(user.password, salt);
+        user.password = hash;
+        
         return $http
           .post('./api/users', user)
           .then(response => response.data)
-          .then(user => this.currentUser = user);
+          .then(user => {
+            this.currentUser = user;
+            $location.path('users/' + this.currentUser.id);
+          });
+
         };
 
       this.login = (credentials) => {
