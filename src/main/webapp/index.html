@@ -69,15 +69,15 @@
         <md-button class="md-raised" aria-label="Profile" ng-click="$state.go('profile', {id: app.accessService.currentUser.id})" ng-if="app.accessService.isLoggedIn()">
           Profile
         </md-button>
-        <md-button class="md-raised" aria-label="Friend Requests" ng-click="app.accessService.logout()" ng-if="app.accessService.isLoggedIn()">
+        <md-button class="md-raised" aria-label="Friend Requests" ng-click="$state.go('friendRequests', {id: app.accessService.currentUser.id})" ng-if="app.accessService.isLoggedIn()">
           Friend Requests
         </md-button>
       </div>
       <div class="right centered row" ng-controller="NavController as nav">
           <div>
-            <input type="text" md-placeholder="Search" ng-model="nav.userName">
+            <input type="text" md-placeholder="Search" ng-model="nav.userName" ng-if="app.accessService.isLoggedIn()">
           </div>
-          <md-button class="md-raised" aria-label="Submit" ng-click="nav.searchNames()">
+          <md-button class="md-raised" aria-label="Submit" ng-click="nav.searchNames()" ng-if="app.accessService.isLoggedIn()">
             Submit
           </md-button>
       </div>
