@@ -12,6 +12,8 @@ import org.springframework.transaction.annotation.Transactional;
 import com.cooksys.fastbook.dao.UserDao;
 import com.cooksys.fastbook.models.Friend;
 import com.cooksys.fastbook.models.FriendId;
+import com.cooksys.fastbook.models.Group;
+import com.cooksys.fastbook.models.Like;
 import com.cooksys.fastbook.models.User;
 
 @Repository
@@ -40,7 +42,10 @@ public class UserDaoImpl implements UserDao
 	public User add(User user)
 	{
 		Session session = getSession();
-		
+//		Like newLike = new Like();
+//		newLike.setId(user.getId());
+//		
+//		session.save(newLike);
 		session.save(user);
 		
 		return get(user.getId() );
@@ -241,6 +246,16 @@ public class UserDaoImpl implements UserDao
 				.createQuery(hql)
 				.setParameter("email", email)
 				.uniqueResult();
+	}
+
+	@Override
+	public List<Group> getUsersGroups(Integer id)
+	{
+		Session session = getSession();
+		
+		String hql= "SELECT gu.group FROM GroupUser gu WHERE gu.id.userId= :userId";
+		
+		return session.createQuery(hql).setInteger("userId", id).list();
 	}
 
 }

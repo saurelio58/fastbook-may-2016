@@ -3,6 +3,7 @@ package com.cooksys.fastbook.dao;
 import java.util.List;
 
 import com.cooksys.fastbook.models.Friend;
+import com.cooksys.fastbook.models.Group;
 import com.cooksys.fastbook.models.User;
 
 public interface UserDao
@@ -34,5 +35,15 @@ public interface UserDao
 	Friend acceptFriendRequest(Integer profileId, Friend friend);
 	Friend denyFriendRequest(Integer profileId, Integer loggedInId);
 	User getByEmail(String email);
+	
+	
+	/**
+	 * Returns a list of all the groups a specific user (user_id) is 
+	 * currently apart of. If the user is apart of no groups then it 
+	 * returns an empty list.
+	 * @param id
+	 * @return
+	 */
+	List<Group> getUsersGroups(Integer id);
 
 }
