@@ -1,6 +1,6 @@
 package com.cooksys.fastbook.models;
 
-// Generated May 4, 2016 4:12:00 PM by Hibernate Tools 4.3.1
+// Generated May 5, 2016 8:24:55 AM by Hibernate Tools 4.3.1
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;

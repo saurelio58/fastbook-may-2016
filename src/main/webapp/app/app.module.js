@@ -10,7 +10,8 @@
       'dtrw.bcrypt',
       'fastbook.user',
       'fastbook.access',
-      'fastbook.friend'
+      'fastbook.friend',
+      'fastbook.group'
     ])
 
 })();
