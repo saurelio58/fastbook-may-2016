@@ -18,5 +18,7 @@
         <mapping class="com.cooksys.fastbook.models.Friend" />
         <mapping class="com.cooksys.fastbook.models.Group" />
         <mapping class="com.cooksys.fastbook.models.Like" />
+        <mapping class="com.cooksys.fastbook.models.GroupUserId" />
+        <mapping class="com.cooksys.fastbook.models.FriendId" />
     </session-factory>
 </hibernate-configuration>

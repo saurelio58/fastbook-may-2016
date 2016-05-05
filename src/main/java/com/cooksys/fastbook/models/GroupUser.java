@@ -57,7 +57,7 @@ public class GroupUser implements java.io.Serializable {
 		this.id = id;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "group_id", nullable = false, insertable = false, updatable = false)
 	public Group getGroup()
 	{
@@ -69,7 +69,7 @@ public class GroupUser implements java.io.Serializable {
 		this.group = group;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "user_id", nullable = false, insertable = false, updatable = false)
 	public User getUser()
 	{

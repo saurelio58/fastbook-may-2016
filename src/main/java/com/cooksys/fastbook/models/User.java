@@ -39,6 +39,8 @@ public class User implements java.io.Serializable {
 	private String password;
 	private Date birthDate;
 	private Date joinDate;
+	
+	@JsonIgnore
 	private Like like;
 	
 	@JsonIgnore
