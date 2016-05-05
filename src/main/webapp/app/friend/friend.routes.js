@@ -11,8 +11,8 @@
         controllerAs: '$requestCtrl',
         resolve: {
           friendRequestsToResolve: ['friendService', '$stateParams', function(friendService, $stateParams) {
-            // return friendService.getFriendRequests($stateParams.id);
-            return friendService.getFriendRequests(1);                            // testing
+            return friendService.getFriendRequests($stateParams.id);
+            // return friendService.getFriendRequests(1);                            // testing
           }],
         },
         data: {
