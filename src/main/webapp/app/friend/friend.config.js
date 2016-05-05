@@ -12,6 +12,8 @@
         .forEach(key => {
           $stateProvider
             .state(key, friendRoutes[key]);  //accesses each state object given the key and the object
+            console.log(key);
+            console.log(friendRoutes[key]);
         })
     }
 
