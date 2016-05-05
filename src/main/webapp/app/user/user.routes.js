@@ -4,21 +4,6 @@
   angular
     .module('fastbook.user')
     .constant('userRoutes', {
-      friendRequests: {
-        url: '/user/{id}/requests',
-        templateUrl: 'app/user/review-friend-requests.template.html',
-        controller: 'ReviewFriendRequestsController',
-        controllerAs: '$requestCtrl',
-        resolve: {
-          friendRequests: ['userService', '$stateParams', function(userService, $stateParams) {
-            return userService.getFriendRequests($stateParams.id);
-          }],
-        },
-        data: {
-          anonymousAllowed: false
-        }
-      },
-
       profile: {
         url: '/users/{id}',
         templateUrl: 'app/user/profile.template.html',
@@ -28,16 +13,16 @@
           user: ['userService', '$stateParams', function(userService, $stateParams) {
             return userService.getUserById($stateParams.id);
           }],
-          userRelation:
-          ['userService', '$stateParams', 'accessService',
+          userRelation: ['userService', '$stateParams', 'accessService',
             function(userService, $stateParams, accessService) {
               return userService.getFriendRequestOnProfile($stateParams.id, accessService.currentUser.id);
-          }]
+            }
+          ]
         },
-      data: {
-        loggedIn: false
-      }
-    },
+        data: {
+          loggedIn: false
+        }
+      },
 
       search: {
         url: '/user',
