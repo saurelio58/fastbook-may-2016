@@ -75,9 +75,9 @@
       </div>
       <div class="right centered row" ng-controller="NavController as nav">
           <div>
-            <input type="text" md-placeholder="Search" ng-model="nav.userName">
+            <input type="text" md-placeholder="Search" ng-model="nav.userName" ng-if="app.accessService.isLoggedIn()">
           </div>
-          <md-button class="md-raised" aria-label="Submit" ng-click="nav.searchNames()">
+          <md-button class="md-raised" aria-label="Submit" ng-click="nav.searchNames()" ng-if="app.accessService.isLoggedIn()">
             Submit
           </md-button>
       </div>
