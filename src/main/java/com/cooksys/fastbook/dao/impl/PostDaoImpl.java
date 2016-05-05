@@ -35,7 +35,7 @@ public class PostDaoImpl implements PostDao {
 	@Override
 	public List<Post> index() {
 		Session session = getSession();
-		return session.createQuery("from Post").list();
+		return session.createQuery("from Post order by id desc").list();
 	}
 
 	@Override
