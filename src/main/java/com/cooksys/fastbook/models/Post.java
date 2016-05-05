@@ -92,7 +92,7 @@ public class Post implements java.io.Serializable {
 		this.timestamp = timestamp;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "author", nullable = false)
 	public User getUser()
 	{

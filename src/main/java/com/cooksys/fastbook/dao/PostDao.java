@@ -7,6 +7,13 @@ import com.cooksys.fastbook.models.Post;
 public interface PostDao {
 
 	List<Post> index();
-	Post add(Post post);
+
+	List<Post> getPostsForUser(Integer userId);
+
+	List<Post> getPostsForGroup(Integer groupId);
+
+	Post addPostToUser(Integer userId, Post post);
+
+	Post addPostToGroup(Integer groupId, Post post);
 
 }
