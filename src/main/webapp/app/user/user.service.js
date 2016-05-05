@@ -24,7 +24,7 @@
           $log.debug(response);
           return response.data;
         });
-    };
+      };
 
     this.getUserById = function(id) {
       return $http
@@ -32,11 +32,11 @@
         .then(response => response.data)
     };
 
-    this.getUsersFriends = function(id) {
-      return $http
-        .get('./api/users/' + id + '/friends')
-        .then(response => response.data)
-    };
+    this.getUserFriends = function(id) {
+          return $http
+            .get('./api/users/' + id + '/friends')
+            .then(response => response.data)
+        };
 
     this.getFriendRequestOnProfile = function(id, loggedInUserId) {
       return $http
@@ -59,12 +59,6 @@
     this.deleteFriendRequestOnProfile = function(id, loggedInUserId) {
       return $http
         .delete('./api/users/' + id + '/denyRequest/' + loggedInUserId)
-        .then(response => response.data)
-    };
-
-    this.getUsersFriends = function(id) {
-      return $http
-        .get('./api/users/' + id)
         .then(response => response.data)
     };
   }

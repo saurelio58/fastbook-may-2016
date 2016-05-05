@@ -4,41 +4,38 @@
     <img ng-src="app/user/zz_cover_photo.jpg" class="md-card-image" alt="No Photo">
     <md-card-header>
        <md-card-avatar>
-          <img class="md-user-avatar" src="app/user/zz_userdefaultphoto_small.png">
+          <img class="md-user-avatar" src="app/user/zz_userdefaultphoto_large.png">
        </md-card-avatar>
        <md-card-header-text>
           <span class="md-title">{{$profileCtrl.profileUser.firstName}} {{$profileCtrl.profileUser.lastName}}</span>
-          <span class="md-subhead">User since {{$profileCtrl.profileUser.joinDate}}</span>
+          <span class="md-subhead">User since {{$profileCtrl.profileUser.joinDate | date}}</span>
        </md-card-header-text>
     </md-card-header>
   </md-card>
   </div>
  <div class="row">
- <div class="user-details-list column">
-   <div>
-     {{$profileCtrl.textDefineStatus}}
-   </div>
+ <div class="profile-details column">
 <div class="header">
-  About
+  About:
  </div>
  <div>
-   Birthday: {{$profileCtrl.profileUser.birthDate}}
+   Birthday: {{$profileCtrl.profileUser.birthDate | date}}
  </div>
  <div>
-   Age:
+   Age: {{$profileCtrl.calculateAge()}}
  </div>
  </div>
- <div class="friend-list column">
-  <div class="friend-list-item row"
-      ng-repeat="user in $profileCtrl.friendList">
-    <div>
-      {{user.firstName}}
-    </div>
-    <div>
-      {{user.lastName}}
-    </div>
-    <a ui-sref="profile({id: user.id})">Profile</a>
-  </div>
+ <div class="profile-friendlist-column">
+ <md-content layout="column">
+   <md-virtual-repeat-container style="width: 100vw; height: 100vh;">
+     <div md-virtual-repeat="user in $profileCtrl.friendList" class="repeated-item-vertical">
+
+       <a ui-sref="profile({id: user.id})">
+               {{user.firstName}} {{user.lastName}}</a>
+
+     </div>
+   </md-virtual-repeat-container>
+ </md-content>
 </div>
- </div>
- </div>
+</div>
+</div>

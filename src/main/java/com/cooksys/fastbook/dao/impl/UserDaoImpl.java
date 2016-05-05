@@ -1,5 +1,6 @@
 package com.cooksys.fastbook.dao.impl;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -41,9 +42,11 @@ public class UserDaoImpl implements UserDao
 	{
 		Session session = getSession();
 		
+/*		Serializable id = session.save(user);
+		return (User) session.get(User.class, id);*/
 		session.save(user);
-		
-		return get(user.getId() );
+		System.out.println(user.getId());
+		return get(user.getId());
 	}
 
 	@Override
