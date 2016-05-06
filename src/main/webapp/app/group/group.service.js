@@ -13,6 +13,7 @@
       $log
     ) {
 
+      this.group;
       this.listOfGroups;
 
       this.getGroupsByName = function(name) {
@@ -22,7 +23,7 @@
            $log.debug(response);
            return response.data;
          });
-     } 
+     }
 
       this.getUsersInGroup = (id) => {
 
@@ -69,6 +70,11 @@
           .then(response => response.data)
       }
 
+      this.getGroupsOwner = (id) => {
+        return $http
+          .get('./api/groups/owner/' + id)
+          .then(response => response.data)
+      }
 
     }
 

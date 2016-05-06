@@ -96,6 +96,12 @@ public class GroupDaoImpl implements GroupDao
 	{
 		Session session = getSession();
 		
+		User sessionUser = (User) session
+			.createQuery("SELECT gu.user FROM GroupUser gu WHERE gui.id.groupId= :userId")
+			.setInteger("userId", user.getId());
+		
+		if (sessionUser.getId() != user.getId()) {
+		
 		GroupUserId gui = new GroupUserId(id,user.getId());
 		GroupUser newGroup = session.get(GroupUser.class, gui);
 		
@@ -104,6 +110,10 @@ public class GroupDaoImpl implements GroupDao
 		session.save(created);
 		
 		return get(id);
+		
+		}
+		else 
+			return null;
 	}
 
 	@Override

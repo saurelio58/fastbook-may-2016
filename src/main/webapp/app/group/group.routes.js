@@ -14,6 +14,10 @@
           }],
           posts: ['groupService', '$stateParams', function (groupService, $stateParams) {
             return groupService.getGroupPosts($stateParams.id)
+          }],
+          groupOwner: ['groupService', '$stateParams', function (groupService, $stateParams) {
+            return groupService.getGroupsOwner($stateParams.id)
+
           }]
         },
         data: {

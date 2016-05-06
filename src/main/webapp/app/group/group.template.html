@@ -2,12 +2,12 @@
   <h1> {{$group.groupService.group.name}} </h1>
   <md-content>
     <div class="">
+      <md-button class="md-raised" aria-label="Join" ng-click="$group.joinGroup()" ng-if=""></md-button>
+      <!-- <md-button class="md-raised" aria-label="Leave" ng-click="remove member to group" ng-if=""></md-button> -->
       <md-virtual-repeat-container id="vertical-container">
         <div md-virtual-repeat="user in groupMembers" md-on-demand
         class="repeated-item" flex>
           {{user}}
-          <md-button class="md-raised" aria-label="Join" ng-click="add member to group" ng-if=""></md-button>
-          <md-button class="md-raised" aria-label="Leave" ng-click="remove member to group" ng-if=""></md-button>
         </div>
       </md-virtual-repeat-container>
     </div>
