@@ -51,4 +51,6 @@ public interface GroupDao {
 
 	Group addUserToGroup(Integer id, User user);
 
+	List<Group> queryGroups(String name);
+
 }

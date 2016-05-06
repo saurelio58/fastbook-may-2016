@@ -106,4 +106,19 @@ public class GroupDaoImpl implements GroupDao
 		return get(id);
 	}
 
+	@Override
+	public List<Group> queryGroups(String name)
+	{
+		Session session = getSession();
+		name = "%" + name + "%";
+		
+		String hql = "from Group g "
+				+ "where g.name like :string ";
+		
+		return session
+				.createQuery(hql)
+				.setParameter("string", name)
+				.list();
+	}
+
 }

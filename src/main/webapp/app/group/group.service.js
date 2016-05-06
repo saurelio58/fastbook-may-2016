@@ -13,7 +13,7 @@
       $log
     ) {
 
-      this.group;
+      this.listOfGroups;
 
       this.getUsersInGroup = () => {
 
@@ -22,7 +22,7 @@
           .then(response => response.data)
       }
 
-      this.getUsersInGroup = () => {
+      this.getPostsInGroup = () => {
 
         return $http
           .get('./api/post/group/{id}')
@@ -32,6 +32,15 @@
       this.postToGroup = () => {
         return $http
           .post('./api/')
+      }
+
+      this.getGroupsByName = function(name) {
+        return $http
+          .get('./api/groups/find/' + name)
+          .then(response =>{
+            $log.debug(response);
+            return response.data;
+          });
       }
 
 
