@@ -51,5 +51,43 @@
         .get('./api/users/' + id + '/getRequest/' + loggedInUserId)
         .then(response => response.data)
     };
+
+    this.sendFriendRequest = function(id, loggedInUser) {
+      return $http
+        .put('./api/users/' + id + '/addRequest', loggedInUser)
+        .then(response => response.data)
+    };
+
+    this.acceptFriendRequestOnProfile = function(id, friendRequest) {
+      return $http
+        .patch('./api/users/' + id + '/acceptRequest', friendRequest)
+        .then(response => response.data)
+    };
+
+    this.deleteFriendRequestOnProfile = function(id, loggedInUserId) {
+      return $http
+        .delete('./api/users/' + id + '/denyRequest/' + loggedInUserId)
+        .then(response => response.data)
+    };
+
+    this.getUsersFriends = function(id) {
+      return $http
+        .get('./api/users/' + id)
+        .then(response => response.data)
+    };
+
+    this.getUsersPosts = (userId) =>{
+      return $http
+        .get('./api/posts/user/' + userId)
+        .then(response => response.data)
+      }
+
+    this.postToUserTimeline = (userId) =>{
+      return $http
+        .post('./api/posts/user/' + userId)
+        .then(response => reponse.data)
+    }
+
+
   }
 })();

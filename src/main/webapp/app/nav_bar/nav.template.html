@@ -1,11 +1,5 @@
-<h1>what</h1>
-
-<div id="RequestContainer">
-
-  <div layout="column" layout-xs="column">
-
-<md-content layout="column">
-  <md-virtual-repeat-container style="width: 100vw; height: 100vh;">
+<div layout="row" style="height: 100vh;">
+  <md-virtual-repeat-container flex>
     <div md-virtual-repeat="user in $nav.user.listOfUsers" class="repeated-item-vertical">
 
       <a ui-sref="profile ({id: user.id})">
@@ -13,7 +7,14 @@
 
     </div>
   </md-virtual-repeat-container>
-</md-content>
 
-</div>
+  <md-virtual-repeat-container flex>
+    <div md-virtual-repeat="group in $nav.group.listOfGroups" class="repeated-item-vertical">
+
+      <a ui-sref="profile ({name: group.name})">
+              {{group.name}}</a>
+
+    </div>
+  </md-virtual-repeat-container>
+
 </div>
