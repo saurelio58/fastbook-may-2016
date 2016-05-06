@@ -6,64 +6,27 @@
     .controller('ProfileController', ProfileController);
 
   ProfileController.$inject = [
-    'user', 'userRelation', 'userService', 'accessService', '$state'
+    'user', 'userService', 'accessService', 'userFriendList', '$state', '$stateParams','$log'
   ];
 
   function ProfileController(
-    user, userRelation, userService, accessService, $state
+    user, userService, accessService, userFriendList, $state, $stateParams, $log
   ) {
     this.profileUser = user;
-    this.friendRequest = userRelation;
     this.loggedInUser = accessService.currentUser;
-    this.textDefineStatus;
-    this.friendList;
+    this.friendList = userFriendList;
 
-    this.getRelationWithUser = () => {
-      userService
-        .getFriendRequestOnProfile(this.profileUser.id, this.loggedInUser.id)
-        .then(friend => this.friendRequest = friend)
-        .then(getStatusText())
-    };
+    $log.debug(this.profileUser)
+    $log.debug(this.profileUser.id)
+    $log.debug(this.loggedInUser)
+    $log.debug(this.loggedInUser.id)
+    userService.setProfileUser(user);
 
-    this.sendRequest = () => {
-      userService
-        .sendFriendRequest(this.profileUser.id, this.loggedInUser)
-        .then(updatedFriend => this.friendRequest = updatedFriend)
-        .then($state.reload())
-    };
-
-    this.acceptRequest = () => {
-      userService
-        .acceptFriendRequestOnProfile(this.profileUser.id, this.friendRequest)
-        .then(acceptedFriend => this.friendRequest = acceptedFriend)
-        .then($state.reload())
-      };
-
-    this.ignoreRequest = () => {
-      userService
-        .deleteFriendRequestOnProfile(this.profileUser.id, this.loggedInUser.id)
-        .then(ignoredFriend => this.friendRequest = ignoredFriend)
-        .then($state.reload())
-    };
-
-    this.getFriendsList = () => {
-      userService
-        .getUsersFriends(this.profileUser.id)
-        .then(list => this.friendList = list)
-    };
-
-    angular.forEach(this.friendList, function(value, key) {
-      userService
-        .getFriendRequestOnProfile(value.id, this.loggedInUserId.id)
-      });
-
-    this.getStatusText = () => {
-      if(this.friendRequest.status === true){
-        this.textDefineStatus = 'You and ' + profileUser.firstName + ' ' + profileUser.lastName + ' are friends.';}
-      else if(this.friendRequest.status === false){
-        this.textDefineStatus = 'Friend request pending.';}
-      else{
-        this.textDefineStatus = 'You and ' + profileUser.firstName + ' ' + profileUser.lastName + ' are not currently friends.';}
-    };
+    $log.debug(this.friendList)
+    this.calculateAge = () => {
+      var ageDifMs = Date.now() - new Date(this.profileUser.birthDate);
+      var ageDate = new Date(ageDifMs);
+      return Math.abs(ageDate.getUTCFullYear() - 1970);
+    }
   }
 })();

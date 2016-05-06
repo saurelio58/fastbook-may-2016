@@ -10,6 +10,14 @@
   function UserService($http, $log, accessService) {
 
     this.listOfUsers;
+    this.profileUser;
+
+    this.setProfileUser = (user) => {
+      $log.debug(user);
+      this.profileUser = user;
+      $log.debug('Profile user: ' + this.profileUser)
+      $log.debug('Last Name: ' + this.profileUser.lastName)
+    }
 
     this.getAllUsers = function() {
       return $http
@@ -24,7 +32,7 @@
           $log.debug(response);
           return response.data;
         });
-    };
+      };
 
     this.getUserById = function(id) {
       return $http
@@ -32,11 +40,11 @@
         .then(response => response.data)
     };
 
-    this.getUsersFriends = function(id) {
-      return $http
-        .get('./api/users/' + id + '/friends')
-        .then(response => response.data)
-    };
+    this.getUserFriends = function(id) {
+          return $http
+            .get('./api/users/' + id + '/friends')
+            .then(response => response.data)
+        };
 
     this.getFriendRequestOnProfile = function(id, loggedInUserId) {
       return $http

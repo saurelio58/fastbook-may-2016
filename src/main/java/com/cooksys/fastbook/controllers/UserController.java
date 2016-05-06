@@ -62,7 +62,7 @@ public class UserController
 		return userDao.getMyPendingRequests(id);
 	}
 	
-	// fastbook/api/users/{id}/requests
+	// fastbook/api/users/{id}/addRequest
 	// Request body contains logged in user
 	@RequestMapping(value = "/{id}/addRequest", method = RequestMethod.PUT)
 	public Friend addFriendRequest(@PathVariable Integer id, @RequestBody User user)
