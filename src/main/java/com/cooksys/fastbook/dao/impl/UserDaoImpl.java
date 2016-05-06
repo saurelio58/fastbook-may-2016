@@ -169,7 +169,7 @@ public class UserDaoImpl implements UserDao
 		Session session = getSession();
 		
 		User receiver = get(profileId);
-		FriendId friendId = new FriendId(profileId, user.getId());
+		FriendId friendId = new FriendId(user.getId(), profileId);
 		Friend friend = new Friend();
 		friend.setId(friendId);
 		friend.setUserByReceivedId(receiver);

@@ -6,28 +6,31 @@
     .controller('ReviewFriendRequestsController', ReviewFriendRequestsController);
 
   ReviewFriendRequestsController.$inject = [
-    'friendRequestsToResolve', 'friendService', '$log', '$state'
+    'friendRequestsToResolve', 'friendService', 'accessService', '$log', '$state'
   ];
 
   function ReviewFriendRequestsController(
-    friendRequestsToResolve, friendService, $log, $state
+    friendRequestsToResolve, friendService, accessService, $log, $state
   ) {
-
+    this.accessService = accessService;
     $log.debug('ReviewFriendRequestsController initialize');
 
+    $log.debug(friendRequestsToResolve);
+
     this.friendRequestsToResolve = friendRequestsToResolve;
-    this.loggedInFirstName = 'Joshua';
-    this.loggedInLastName = 'Dalton';
+    $log.debug(this.friendRequestsToResolve);
 
     this.acceptFriendRequest = function(friend) {
+      $log.debug('Accepting friend');
       friendService
-        .acceptFriendRequest(friend)
+        .acceptFriendRequestFromList(friend)
         .then(() => $state.reload())
     };
 
     this.rejectFriendRequest = function(friend) {
+      $log.debug('Denying friend');
       friendService
-        .rejectFriendRequest(friend)
+        .rejectFriendRequestFromList(friend)
         .then(() => $state.reload())
     };
 
