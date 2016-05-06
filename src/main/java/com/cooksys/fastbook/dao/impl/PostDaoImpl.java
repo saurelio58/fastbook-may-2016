@@ -87,16 +87,16 @@ public class PostDaoImpl implements PostDao
 
 	@Override
 	public Post addPostToUser(Integer userId, Post post) {
-		Session session = sessionFactory.getCurrentSession();
-
-		User userWall = new User();
-		userWall = userController.getUser(userId);
-
-		Set<User> users = post.getUsers();
-		users.add(userWall);
-		post.setUsers(users);
-
-		session.save(post);
+//		Session session = sessionFactory.getCurrentSession();
+//
+//		User userWall = new User();
+//		userWall = userController.getUser(userId);
+//
+//		Set<User> users = post.getUsers();
+//		users.add(userWall);
+//		post.setUsers(users);
+//
+//		session.save(post);
 		
 		return post;
 	}
