@@ -14,9 +14,10 @@
       $rootScope.$on('$stateChangeStart', function(event, toState, toStateParams){
         let loggedIn = accessService.isLoggedIn();
 
-        // if(!loggedIn){
-        //   event.preventDefault();$state.go('login')
-        // }
+        if(toState.data == false && !loggedIn){
+          event.preventDefault();$state.go('login')
+        }
+
       });
     }
 
