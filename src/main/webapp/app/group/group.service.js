@@ -15,6 +15,15 @@
 
       this.listOfGroups;
 
+      this.getGroupsByName = function(name) {
+       return $http
+         .get('./api/groups/find/' + name)
+         .then(response =>{
+           $log.debug(response);
+           return response.data;
+         });
+     } 
+
       this.getUsersInGroup = (id) => {
 
         return $http
