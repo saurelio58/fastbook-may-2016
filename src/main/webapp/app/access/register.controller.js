@@ -12,6 +12,8 @@
     $log.debug('Creating $register');
     $scope.date = new Date();
 
+    this.maxDate = new Date();
+
     this.register = () => {
       this.errorMessage = null;
       this.user.joinDate = $scope.date;
@@ -20,7 +22,6 @@
         .then(result => {
           // user already exists
           this.errorMessage = 'User already exists!';
-
         })
     }
 
