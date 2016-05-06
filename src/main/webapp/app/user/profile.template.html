@@ -56,12 +56,24 @@
     <md-card flex flex-gt-xs="40" layout-padding>
       <h2>Timeline</h2>
       <md-divider></md-divider>
-        <md-input-container class="md-block">
-            <input type="text" placeholder="Post something to the timeline...">
+        <md-input-container>
+          <!-- <input type="text" placeholder="Post something on your timeline..."> -->
+          <label>Post something on your timeline...</label>
+          <textarea name="name" ng-model="$profileCtrl.userService.post.text" rows="8" cols="40" md-maxlength="140"></textarea>
           </md-input-container> <br>
-            <md-button class="md-raised">Post</md-button>
+            <md-button class="md-raised" ng-click="$profileCtrl.post()">Post</md-button>
         <md-divider></md-divider>
-          <md-card-content>
+          <md-card-content layout="column">
+            <md-virtual-repeat-container flex style="height: 800vh;">
+              <div md-virtual-repeat="post in $profileCtrl.usersPosts" class="repeated-item-vertical" style="padding-top: 5px; padding-bottom: 5px; height: 30px;">
+                <!-- <md-card-avatar>
+                <img class="md-user-avatar md-media-sm" src="app/user/zz_userdefaultphoto_small.png">
+              </md-card-avatar> -->
+              {{post.text}}
+                <!-- <a ui-sref="profile({id: user.id})" style="display: block; padding-top: 5px; padding-bottom: 5px;">{{user.firstName}} {{user.lastName}}</a> -->
+                  <md-divider style="padding-top: 5px; padding-bottom: 5px;"></md-divider>
+              </div>
+            </md-virtual-repeat-container>
         </md-card-content>
     </md-card>
 

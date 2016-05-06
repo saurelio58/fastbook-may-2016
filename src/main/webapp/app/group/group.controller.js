@@ -49,7 +49,19 @@
       }
 
       this.createPostInGroup = () =>{
+        $scope.date = new Date();
+        this.groupService.groupPost.timestamp = $scope.date;
         groupService.postToGroup(this.groupService);
+
+}
+      this.create = () => {
+        $log.debug($group.group.name);
+        $log.debug(userService.currentUser.id);
+        groupService
+          .createGroup(userService.currentUser.id, $group.group)
+          .then(createdGroup => groupService.group = createdGroup)
+          .$state.go('group', {id: groupService.group.id})
+      }
 
       this.joinGroup = () => {
 
@@ -61,6 +73,5 @@
             }
           })
       }
-    }
     }
 })();

@@ -11,7 +11,6 @@
       $http,
       $state,
       $log,
-      $scope,
       accessService
     ) {
 
@@ -42,8 +41,6 @@
       }
 
       this.postToGroup = (groupPost) => {
-        $scope.date = new Date();
-        groupPost.timestamp = $scope.date;
         groupPost.user = this.currentUser;
         return $http
           .post('./api/posts/group/' + groupService.group.id, groupPost)
