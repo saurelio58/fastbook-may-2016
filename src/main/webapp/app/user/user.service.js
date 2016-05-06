@@ -12,7 +12,6 @@
     this.listOfUsers;
     this.profileUser;
     this.post;
-    this.currentUser = accessService;
 
 
     this.setProfileUser = (user) => {
@@ -20,7 +19,7 @@
       this.profileUser = user;
       $log.debug('Profile user: ' + this.profileUser)
       $log.debug('Last Name: ' + this.profileUser.lastName)
-    }
+    };
 
     this.getAllUsers = function() {
       return $http
@@ -69,8 +68,8 @@
       return $http
         .post('./api/posts/user/' + loggedInUser.id, post)
         .then(response => response.data)
-    }
+    };
 
 
-  }
+  };
 })();
