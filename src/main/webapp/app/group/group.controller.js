@@ -3,11 +3,34 @@
     .module('fastbook.group')
     .controller('GroupController', GroupController);
 
-    GroupController.$inject = ['groupService', 'userService', '$state', '$scope', '$mdDialog', '$log'];
+    GroupController.$inject = [
+      'groupService',
+      'userService',
+      '$state',
+      '$scope',
+      '$mdDialog',
+      '$log',
+      'groupMembers',
+      'posts',
+      'groupOwner'
+    ];
 
-    function GroupController(groupService, userService, $state, $scope, $log) {
+    function GroupController(
+      groupService,
+      userService,
+      $state,
+      $scope,
+      $log,
+      groupMembers,
+      posts,
+      groupOwner
+
+    ) {
 
       this.groupService = groupService;
+      this.groupMembers = groupMembers;
+      this.posts = posts;
+      this.groupOwner = groupOwner;
 
       $scope.showAlert = function(ev) {
     // Appending dialog to document.body to cover sidenav in docs app
@@ -27,15 +50,6 @@
 
       this.createPostInGroup = () =>{
         groupService.postToGroup(this.groupService);
-
-      this.create = () => {
-        $log.debug($group.group.name);
-        $log.debug(userService.currentUser.id);
-        groupService
-          .createGroup(userService.currentUser.id, $group.group)
-          .then(createdGroup => groupService.group = createdGroup)
-          .$state.go('group', {id: groupService.group.id})
-      }
 
       this.joinGroup = () => {
 

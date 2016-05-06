@@ -26,10 +26,10 @@
       },
 
       groupCreate: {
-        url: '/groups/',
+        url: '/groups/create',
         templateUrl: 'app/group/group-create.template.html',
-        controller: 'GroupController',
-        controllerAs: '$group',
+        controller: 'GroupCreateController',
+        controllerAs: '$groupCreate',
         data: {
           loggedIn: true
         }
