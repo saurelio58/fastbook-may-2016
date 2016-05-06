@@ -1,41 +1,58 @@
-<div class="column">
-<div>
-<md-card>
-    <img ng-src="app/user/zz_cover_photo.jpg" class="md-card-image" alt="No Photo">
-    <md-card-header>
-       <md-card-avatar>
-          <img class="md-user-avatar" src="app/user/zz_userdefaultphoto_large.png">
-       </md-card-avatar>
-       <md-card-header-text>
-          <span class="md-title">{{$profileCtrl.profileUser.firstName}} {{$profileCtrl.profileUser.lastName}}</span>
+<md-content class="md-padding" >
+  <div layout="row"  layout-xs="column">
+    <md-card flex flex-gt-xs="25">
+      <md-card-header>
+    <!--    <md-card-avatar>
+          <md-icon class="md-avatar-icon" md-svg-icon="img/icons/menu.svg"></md-icon> -->
+        </md-card-avatar>
+        <md-card-header-text>
+          <span class="md-title">{{$profileCtrl.profileUser.firstName}}</span>
+          <span class="md-title">{{$profileCtrl.profileUser.lastName}}</span>
           <span class="md-subhead">User since {{$profileCtrl.profileUser.joinDate | date}}</span>
-       </md-card-header-text>
-    </md-card-header>
-  </md-card>
-  </div>
- <div class="row">
- <div class="profile-details column">
-<div class="header">
-  About:
- </div>
- <div>
-   Birthday: {{$profileCtrl.profileUser.birthDate | date}}
- </div>
- <div>
-   Age: {{$profileCtrl.calculateAge()}}
- </div>
- </div>
- <div class="profile-friendlist-column">
- <md-content layout="column">
-   <md-virtual-repeat-container style="width: 100vw; height: 100vh;">
-     <div md-virtual-repeat="user in $profileCtrl.friendList" class="repeated-item-vertical">
+        </md-card-header-text>
+      </md-card-header>
+      <img ng-src="app/user/zz_userdefaultphoto_large.png" class="md-card-image">
+      <md-card-actions layout="row" layout-align="start center">
+        <md-button>Add Friend</md-button>
+      </md-card-actions>
+      <md-card-title>
+        <md-card-title-text>
+          <h2 class="md-headline">About Me</h2>
+        </md-card-title-text>
+      </md-card-title>
+      <md-card-content>
+        <p>
+        Birthday: {{$profileCtrl.profileUser.birthDate | date}}<br>
+        Age: {{$profileCtrl.calculateAge()}}
+        </p>
+      </md-card-content>
+    </md-card>
 
-       <a ui-sref="profile({id: user.id})">
-               {{user.firstName}} {{user.lastName}}</a>
+    <md-card flex flex-gt-xs="25" >
+      <h2>Timeline</h2>
+        <md-card-content>
+          <md-input-container>
+            <input type="text" placeholder="Post something on your timeline...">
+          </md-input-container>
+        </md-card-content>
+    </md-card>
 
-     </div>
-   </md-virtual-repeat-container>
- </md-content>
-</div>
-</div>
-</div>
+    <md-card flex flex-gt-xs="25">
+      <h2>{{$profileCtrl.profileUser.firstName}}'s Friends</h2>
+        <md-card-content>
+          <md-virtual-repeat-container style="width: 100vw; height: 100vh;">
+            <div md-virtual-repeat="user in $profileCtrl.friendList" class="repeated-item-vertical">
+              <a ui-sref="profile({id: user.id})">{{user.firstName}} {{user.lastName}}</a>
+            </div>
+          </md-virtual-repeat-container>
+        </md-card-content>
+      </md-card>
+
+    <md-card flex flex-gt-xs="25">
+      <h2>{{$profileCtrl.profileUser.firstName}}'s Groups</h2>
+        <md-card-content>
+          </md-card-content>
+        </md-card>
+
+    </div>
+</md-content>
