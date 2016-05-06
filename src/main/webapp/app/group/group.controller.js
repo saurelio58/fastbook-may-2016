@@ -3,7 +3,7 @@
     .module('fastbook.group')
     .controller('GroupController', GroupController);
 
-    GroupController.$inject = ['groupService', 'userService', '$state', '$scope'];
+    GroupController.$inject = ['groupService', 'userService', '$state', '$scope', '$mdDialog'];
 
     function GroupController(groupService, userService, $state, $scope) {
 
@@ -22,8 +22,8 @@
         .ariaLabel('Alert Dialog')
         .ok('OK')
         .targetEvent(ev)
-    );
-  }
+        );
+      }
 
       this.createPostInGroup = () =>{
         groupService.postToGroup(this.groupService);
@@ -41,7 +41,7 @@
           .joinGroup(groupService.group.id, userService.currentUser.id)
           .then(response => {
             if (response == null) {
-              showAlert($event)
+              $scope.showAlert()
             }
           })
       }
