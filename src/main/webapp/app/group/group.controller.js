@@ -6,6 +6,9 @@
     GroupController.$inject = ['groupService'];
 
     function GroupController(groupService) {
+
+      this.groupService = groupService;
+
       
     }
 })();

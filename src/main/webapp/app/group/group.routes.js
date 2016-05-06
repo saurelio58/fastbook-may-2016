@@ -19,6 +19,16 @@
         data: {
           loggedIn: true
         }
+      },
+
+      groupCreate: {
+        url: '/groups/',
+        templateUrl: 'app/group/group-create.template.html',
+        controller: 'GroupController',
+        controllerAs: '$group',
+        data: {
+          loggedIn: true
+        }
       }
 
     })
