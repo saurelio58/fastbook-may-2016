@@ -72,6 +72,7 @@
       return $http
         .get('./api/posts/user/' + userId)
         .then(response => response.data)
+      }
 
     this.postToUserTimeline = (userId) =>{
       return $http
