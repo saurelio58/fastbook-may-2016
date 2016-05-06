@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.cooksys.fastbook.dao.PostDao;
 import com.cooksys.fastbook.models.Post;
+import com.cooksys.fastbook.models.PostWithLikeData;
+import com.cooksys.fastbook.models.User;
 
 @RestController
 @RequestMapping(value = "/posts")
@@ -25,10 +27,55 @@ public class PostController
 	{
 		return postDao.index();
 	}
-			
-	@RequestMapping(method = RequestMethod.POST)
-	public Post addPost(@RequestBody Post post)
-	{
-		return postDao.add(post);
+
+	/**
+	 * get all posts for a user
+	 * 
+	 * @param userId
+	 * @return list of posts for a user
+	 */
+	// fastbook/api/posts/user/{userId}
+	@RequestMapping(value = "/user/getPosts/{userId}", method = RequestMethod.POST)
+	public List<PostWithLikeData> getPostsForUser(@PathVariable Integer userId, @RequestBody User loggedInUser) {
+		return postDao.getPostsForUser(userId, loggedInUser.getId());
 	}
+
+	/**
+	 * get all posts for a group
+	 * 
+	 * @param groupId
+	 * @return list of posts for a group
+	 */
+	// fastbook/api/posts/group/{groupId}
+	@RequestMapping(value = "/group/getPosts/{groupId}", method = RequestMethod.POST)
+	public List<Post> getPostsForGroup(@PathVariable Integer groupId, @RequestBody User loggedInUser) {
+		return postDao.getPostsForGroup(groupId, loggedInUser.getId());
+	}
+
+	/**
+	 * add a post to a user
+	 * 
+	 * @param userId,
+	 *            post
+	 * @return post object
+	 */
+	// fastbook/api/posts/user/{userId}
+	@RequestMapping(value = "/user/{userId}", method = RequestMethod.POST)
+	public Post addPostToUser(@PathVariable Integer userId, @RequestBody Post post) {
+		return postDao.addPostToUser(userId, post);
+	}
+
+	/**
+	 * add a post to a group
+	 * 
+	 * @param groupId,
+	 *            post
+	 * @return post object
+	 */
+	// fastbook/api/posts/group/{groupId}
+	@RequestMapping(value = "/group/{groupId}", method = RequestMethod.POST)
+	public Post addPostToGroup(@PathVariable Integer groupId, @RequestBody Post post) {
+		return postDao.addPostToGroup(groupId, post);
+	}
+
 }
