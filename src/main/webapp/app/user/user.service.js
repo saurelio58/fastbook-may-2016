@@ -67,5 +67,18 @@
         .get('./api/users/' + id)
         .then(response => response.data)
     };
+
+    this.getUsersPosts = (userId) =>{
+      return $http
+        .get('./api/posts/user/' + userId)
+        .then(response => response.data)
+
+    this.postToUserTimeline = (userId) =>{
+      return $http
+        .post('./api/posts/user/' + userId)
+        .then(response => reponse.data)
+    }
+
+
   }
 })();

@@ -15,32 +15,49 @@
 
       this.listOfGroups;
 
-      this.getUsersInGroup = () => {
+      this.getUsersInGroup = (id) => {
 
         return $http
-          .get('./api/groups/users/{id}')
+          .get('./api/groups/users/' + id)
           .then(response => response.data)
       }
 
-      this.getPostsInGroup = () => {
+      this.getGroupPosts = (id) => {
 
         return $http
-          .get('./api/post/group/{id}')
+          .get('./api/post/group/' + id)
           .then(response => response.data)
       }
 
-      this.postToGroup = () => {
+      this.postToGroup = (groupId) => {
         return $http
-          .post('./api/')
+          .post('./api/posts/group/' + groupId)
+          .then(response => response.data)
       }
 
-      this.getGroupsByName = function(name) {
+      this.createGroup = (id, groupName) => {
         return $http
-          .get('./api/groups/find/' + name)
-          .then(response =>{
-            $log.debug(response);
-            return response.data;
-          });
+          .post('./api/groups/' + id, groupName)
+          .then(response => response.data)
+      }
+
+      this.joinGroup = (id) => {
+        return $http
+          .put('./api/groups/' + id)
+          .then(response => response.data)
+      }
+
+      // not implemented yet
+      // this.leaveGroup = () => {
+      //   return $http
+      //     .post('./api')
+      //     .then(response => response.data)
+      // }
+
+      this.getGroup = (id) => {
+        return $http
+          .get('./api/groups/' + id)
+          .then(response => response.data)
       }
 
 
