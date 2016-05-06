@@ -1,7 +1,25 @@
 *{
   box-sizing: border-box;
 }
+html *
+{
+   font-family: 'Roboto', sans-serif !important;
+}
+$gray: #eee;
 
+md-content.md-default-theme {
+  background-color: $gray;
+}
+
+h2 {
+  font-weight: 400;
+  padding-right: : 10px;
+}
+
+#profileDiv {
+  background-color: gray;
+  background: gray;
+}
 .column,
 .row {
   display: flex;

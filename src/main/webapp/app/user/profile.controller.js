@@ -7,28 +7,28 @@
 
   ProfileController.$inject = [
     'user', 'userService', 'accessService', '$state', '$log'
+    'user', 'userFriendList', 'userService', 'accessService', '$state', '$stateParams','$log'
   ];
 
   function ProfileController(
     user, userService, accessService, $state, $log
+    user, userFriendList, userService, accessService, $state, $stateParams, $log
   ) {
-    this.user = user;
+    this.profileUser = user;
+    this.loggedInUser = accessService.currentUser;
+    this.friendList = userFriendList;
 
+    $log.debug(this.profileUser)
+    $log.debug(this.profileUser.id)
+    $log.debug(this.loggedInUser)
+    $log.debug(this.loggedInUser.id)
     userService.setProfileUser(user);
 
-    this.userService = userService;
-    this.loggedInUser = accessService.currentUser;
-    this.friendList;
-
-    this.getFriendsList = () => {
-      userService
-        .getUsersFriends(userService.profileUser.id)
-        .then(list => this.friendList = list)
-    };
-
-    angular.forEach(this.friendList, function(value, key) {
-      userService
-        .getFriendRequestOnProfile(value.id, this.loggedInUserId.id)
-      });
+    $log.debug(this.friendList)
+    this.calculateAge = () => {
+      var ageDifMs = Date.now() - new Date(this.profileUser.birthDate);
+      var ageDate = new Date(ageDifMs);
+      return Math.abs(ageDate.getUTCFullYear() - 1970);
+    }
   }
 })();
