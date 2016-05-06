@@ -6,11 +6,13 @@
     .controller('ProfileController', ProfileController);
 
   ProfileController.$inject = [
-    'user', 'userService', 'accessService', 'userFriendList', 'groupService', 'userGroupList', '$state', '$stateParams','$log','userPosts'
+    'user', 'userService', 'accessService', 'userFriendList', 'groupService',
+    'userGroupList', '$state', '$stateParams','$log','userPosts', '$scope'
   ];
 
   function ProfileController(
-    user, userService, accessService, userFriendList, groupService, userGroupList, $state, $stateParams, $log, userPosts
+    user, userService, accessService, userFriendList, groupService,
+    userGroupList, $state, $stateParams, $log, userPosts, $scope
   ) {
     $log.debug('ProfileController initializing...')
 
