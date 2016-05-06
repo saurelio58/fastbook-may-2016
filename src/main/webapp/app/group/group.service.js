@@ -10,11 +10,15 @@
     function GroupService(
       $http,
       $state,
-      $log
+      $log,
+      $scope,
+      accessService
     ) {
 
       this.group;
       this.listOfGroups;
+      this.groupPost;
+      this.currentUser = accessService;
 
       this.getGroupsByName = function(name) {
        return $http
@@ -39,9 +43,12 @@
           .then(response => response.data)
       }
 
-      this.postToGroup = (groupId) => {
+      this.postToGroup = (groupPost) => {
+        $scope.date = new Date();
+        groupPost.timestamp = $scope.date;
+        groupPost.user = this.currentUser;
         return $http
-          .post('./api/posts/group/' + groupId)
+          .post('./api/posts/group/' + groupService.group.id, groupPost)
           .then(response => response.data)
       }
 

@@ -25,6 +25,9 @@
     );
   }
 
+      this.createPostInGroup = () =>{
+        groupService.postToGroup(this.groupService);
+
       this.create = () => {
         groupService
           .createGroup(userService.currentUser.id, this.group.name)
@@ -42,5 +45,6 @@
             }
           })
       }
+    }
     }
 })();
