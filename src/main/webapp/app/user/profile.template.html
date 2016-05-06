@@ -89,7 +89,7 @@
         <md-card-content>
         <md-virtual-repeat-container style="height: 100vh;">
             <div md-virtual-repeat="group in $profileCtrl.groupList" class="repeated-item-vertical" style="padding-top: 5px; padding-bottom: 5px; height: 30px;">
-              <a ui-sref="group({id: group.id})"style="display: block; padding-top: 5px; padding-bottom: 5px;">{{group.name}}</a>
+              <a ui-sref="group({groupId: group.id})"style="display: block; padding-top: 5px; padding-bottom: 5px;">{{group.name}}</a>
               <md-divider style="padding-top: 5px; padding-bottom: 5px;"></md-divider>
             </div>
           </md-virtual-repeat-container>
