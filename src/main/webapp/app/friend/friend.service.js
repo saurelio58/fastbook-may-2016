@@ -5,21 +5,21 @@
     .module('fastbook.friend')
     .service('friendService', FriendService);
 
-  FriendService.$inject = ['$http', '$log'];
+  FriendService.$inject = ['accessService', '$http', '$log'];
 
-  function FriendService($http, $log) {
+  function FriendService(accessService, $http, $log) {
 
-    this.acceptFriendRequest = function(friend) {
+    this.acceptFriendRequestFromList = function(friend) {
+      $log.debug('./api/users/' + accessService.currentUser.id + '/acceptRequestFromList');
       return $http
-        .patch('./api/users/1/acceptRequestFromList', friend)
+        .patch('./api/users/' + accessService.currentUser.id + '/acceptRequestFromList', friend)
         .then(response => response.data);
     };
 
-    this.rejectFriendRequest = function(friend) {
-      $log.debug('friendService - rejectFriendRequest - initialize');
+    this.rejectFriendRequestFromList = function(friend) {
+      $log.debug('./api/users/' + accessService.currentUser.id + '/denyRequestFromList/' + friend.id.sentId);
       return $http
-        // .delete('./api/' + id + 'denyRequestFromList' + friend.id.sentId)
-        .delete('./api/users/1/denyRequestFromList/' + friend.id.sentId)
+        .delete('./api/users/' + accessService.currentUser.id + '/denyRequestFromList/' + friend.id.sentId)
         .then(response => response.data);
     };
 
@@ -37,22 +37,35 @@
           .get('./api/users/' + id + '/my_pending_requests')
           .then(response => {
             $log.debug('friendService - getFriendRequests - response ' + response);
-            response.data
+            return response.data
 
           });
       };
 
-    // Request body contains logged in user
-    this.addFriendRequest = function(loggedInUser, friendId) {
+    this.addFriendRequest = function(userId) {
       return $http
-        .put('./api/users/' + friendId + '/requests', loggedInUser)
+        .put('./api/users/' + userId + '/addRequest', accessService.currentUser)
         .then(response => response.data);
     };
 
+    this.denyRequest = function(userId) {
+      return $http
+        .delete('./api/users/' + userId + '/denyRequest/' + accessService.currentUser.id)
+        .then(response => response.data);
+    }
 
+    this.acceptRequest = function(userId, friend) {
+      $log.debug('Accepting friend: ' + friend);
+      return $http
+        .patch('./api/users/' + userId + '/acceptRequest', friend)
+        .then(response => response.data);
+    }
 
-
-
+    this.getRelation = function(userId) {
+      return $http
+        .get('./api/users/' + userId + '/getRequest/' + accessService.currentUser.id)
+        .then(response => response.data);
+    }
   }
 
 })();

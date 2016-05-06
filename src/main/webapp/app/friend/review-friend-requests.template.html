@@ -1,7 +1,7 @@
 <div id="RequestContainer">
   <div layout="row" layout-xs="column">
     <div flex="20" class="md-headline">Friend Requests for:</div>
-    <div flex class="md-title">{{$requestCtrl.loggedInFirstName}} {{$requestCtrl.loggedInLastName}}</div>
+    <div flex class="md-title">{{$requestCtrl.accessService.currentUser.firstName}} {{$requestCtrl.accessService.currentUser.lastName}}</div>
   </div>
   <div layout="column" layout-xs="column">
 

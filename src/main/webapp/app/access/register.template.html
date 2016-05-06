@@ -1,44 +1,46 @@
 <body ng-app="fastbook">
- <div>
-   <div id="signup">
+  <div>
+    <div id="signup">
       <div class="signup-screen">
-         <div class="space-bot textCenter">
-            <h1>Sign up</h1>
-           <div class="divider"></div>
-         </div>
-           <form class="form-register" name="register" novalidate>
-	            <div class="input-field">
-              <input id="first-name" type="text" class="validate" required ng-model="$register.user.firstName">
-              <label for="first-name">First Name</label>
-            </div>
-            <div class="input-field">
-              <input id="last-name" type="text" class="validate" required ng-model="$register.user.lastName">
-              <label for="last-name">Last Name</label>
-             </div>
-             <div class="input-field">
-              <input id="email" type="email" name="email" ng-model="$register.user.email" class="validate" required>
-              <label for="email">Email</label>
-             </div>
-             <p class="alert alert-danger" ng-show="form-register.email.$error.email">Your email is invalid.</p>
-             <div class="input-field">
-               <input id="password" type="password" name="password" ng-model="$register.user.password" ng-minlength='6' class="validate" required>
-               <label for="password">Password</label>
-              </div>
-              <div class="input-field">
-                    <input type="date" class="validate" name="birthDate" ng-model=$register.user.birthDate required>
-                    <label for="birthdate">Birthdate</label>
-              </div>
-              <p class="alert alert-danger" ng-show="form-register.password.$error.minlength || form.password.$invalid">Your password must be at least 6 characters.</p>
-              <div class="space-top textCenter">
-               <button type="button" ng-disabled="form-register.$invalid" class="waves-effect waves-light btn done" ng-click=$register.register()>
-               <i class="material-icons left"></i> Done
-               </button>
-               <button type="button" class="waves-effect waves-light btn cancel">
-               <i class="material-icons left"></i>Cancel
-               </button>
-              </div>
-             </form>
-           </div>
+        <div class="space-bot textCenter">
+          <h1>Sign up</h1>
+          <div class="divider"></div>
         </div>
+        <form class="form-register" name="register" novalidate>
+          <div class="input-field">
+            <input id="first-name" type="text" class="validate" required ng-model="$register.user.firstName">
+            <label for="first-name">First Name</label>
+          </div>
+          <div class="input-field">
+            <input id="last-name" type="text" class="validate" required ng-model="$register.user.lastName">
+            <label for="last-name">Last Name</label>
+          </div>
+          <div class="input-field">
+            <input id="email" type="email" name="email" ng-model="$register.user.email" class="validate" required>
+            <label for="email">Email</label>
+          </div>
+          <p class="alert alert-danger" ng-show="form-register.email.$error.email">Your email is invalid.</p>
+          <div class="input-field">
+            <input id="password" type="password" name="password" ng-model="$register.user.password" ng-minlength='6' class="validate" required>
+            <label for="password">Password</label>
+          </div>
+          <div class="input-field">
+            <input type="date" max="{{$register.maxDate | date:'yyyy-MM-dd'}}" class="validate" name="birthDate" ng-model=$register.user.birthDate required>
+            <label for="birthdate">Birthdate</label> 
+          </div>
+          <p class="alert alert-danger" ng-show="form-register.password.$error.minlength || form.password.$invalid">Your password must be at least 6 characters.</p>
+          <div class="space-top textCenter">
+            <button type="button" ng-disabled="form-register.$invalid" class="waves-effect waves-light btn done" ng-click=$register.register()>
+              <i class="material-icons left"></i> Done
+            </button>
+            <button type="button" class="waves-effect waves-light btn cancel">
+              <i class="material-icons left"></i>Cancel
+            </button>
+            <div for="errorMessage" ng-model="$register.errorMessage">
+              {{$register.errorMessage}} </div>
+          </div>
+        </form>
+      </div>
     </div>
+  </div>
 </body>

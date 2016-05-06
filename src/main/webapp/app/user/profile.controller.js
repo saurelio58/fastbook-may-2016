@@ -6,11 +6,11 @@
     .controller('ProfileController', ProfileController);
 
   ProfileController.$inject = [
-    'user', 'userFriendList', 'userService', 'accessService', '$state', '$stateParams','$log'
+    'user', 'userService', 'accessService', 'userFriendList', '$state', '$stateParams','$log'
   ];
 
   function ProfileController(
-    user, userFriendList, userService, accessService, $state, $stateParams, $log
+    user, userService, accessService, userFriendList, $state, $stateParams, $log
   ) {
     this.profileUser = user;
     this.loggedInUser = accessService.currentUser;
@@ -20,6 +20,7 @@
     $log.debug(this.profileUser.id)
     $log.debug(this.loggedInUser)
     $log.debug(this.loggedInUser.id)
+    userService.setProfileUser(user);
 
     $log.debug(this.friendList)
     this.calculateAge = () => {

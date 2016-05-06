@@ -36,7 +36,7 @@
 <script src="./app/access/access.config.js"></script>
 
 <script src="./app/friend/friend.module.js"></script>
-<script src="./app/friend/friend.controller.js"></script>
+<script src="./app/friend/friend-relation.controller.js"></script>
 <script src="./app/friend/review-friend-requests.controller.js"></script>
 <script src="./app/friend/friend.service.js"></script>
 <script src="./app/friend/friend.routes.js"></script>
@@ -73,6 +73,10 @@
         <md-button class="md-raised" aria-label="Friend Requests" ng-click="$state.go('friendRequests', {id: app.accessService.currentUser.id})" ng-if="app.accessService.isLoggedIn()">
           Friend Requests
         </md-button>
+
+        <h3 ng-if="app.accessService.isLoggedIn()">
+          {{app.accessService.currentUser.firstName}} {{app.accessService.currentUser.lastName}}
+        </h3>
       </div>
       <div class="right centered row" ng-controller="NavController as nav">
           <div>
