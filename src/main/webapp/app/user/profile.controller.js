@@ -6,13 +6,11 @@
     .controller('ProfileController', ProfileController);
 
   ProfileController.$inject = [
-    'user', 'userService', 'accessService', '$state', '$log'
-    'user', 'userFriendList', 'userService', 'accessService', '$state', '$stateParams','$log'
+    'user', 'userService', 'accessService', 'userFriendList', '$state', '$stateParams','$log'
   ];
 
   function ProfileController(
-    user, userService, accessService, $state, $log
-    user, userFriendList, userService, accessService, $state, $stateParams, $log
+    user, userService, accessService, userFriendList, $state, $stateParams, $log
   ) {
     this.profileUser = user;
     this.loggedInUser = accessService.currentUser;
