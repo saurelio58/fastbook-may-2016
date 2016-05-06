@@ -14,8 +14,10 @@
   </md-content>
   <md-input-container>
     <label>New Post</label>
-    <textarea maxlength="140" ng-model="group.post.text"></textarea>
-    <md-button class="md-raised" aria-label="Submit" ng-click="create post"></md-button>
+    <!--  -->
+    <textarea maxlength="140" ng-model="$group.groupService.groupPost.text"></textarea>
+    <md-button class="md-raised" aria-label="Submit" ng-click="$group.createPostInGroup()"></md-button>
+    <!--  -->
   </md-input-container>
   <div class="posts" id="posts">
     <md-toolbar class="md-theme-light">

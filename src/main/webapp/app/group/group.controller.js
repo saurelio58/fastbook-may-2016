@@ -9,6 +9,9 @@
 
       this.groupService = groupService;
 
-      
+      this.createPostInGroup = () =>{
+        groupService.postToGroup(this.groupService);
+
+    }
     }
 })();

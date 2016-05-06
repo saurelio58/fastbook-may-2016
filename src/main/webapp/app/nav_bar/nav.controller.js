@@ -24,7 +24,6 @@
 
         this.group.getGroupsByName(this.userName)
             .then(data => this.group.listOfGroups = data);
-            $log.debug('blah');
         $state.go('search');
 
     }
