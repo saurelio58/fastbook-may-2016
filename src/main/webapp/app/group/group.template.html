@@ -1,0 +1,41 @@
+<body ng-app="fastbook">
+  <h1> {{$group.groupService.group.name}} </h1>
+  <md-content>
+    <div class="">
+      <md-button class="md-raised" aria-label="Join" ng-click="$group.joinGroup()" ng-if=""></md-button>
+      <!-- <md-button class="md-raised" aria-label="Leave" ng-click="remove member to group" ng-if=""></md-button> -->
+      <md-virtual-repeat-container id="vertical-container">
+        <div md-virtual-repeat="user in groupMembers" md-on-demand
+        class="repeated-item" flex>
+          {{user}}
+        </div>
+      </md-virtual-repeat-container>
+    </div>
+  </md-content>
+  <md-input-container>
+    <label>New Post</label>
+    <!--  -->
+    <textarea maxlength="140" ng-model="$group.groupService.groupPost.text"></textarea>
+    <md-button class="md-raised" aria-label="Submit" ng-click="$group.createPostInGroup()"></md-button>
+    <!--  -->
+  </md-input-container>
+  <div class="posts" id="posts">
+    <md-toolbar class="md-theme-light">
+      <h2 class="md-toolbar-tools">
+        <span>Posts</span>
+      </h2>
+    </md-toolbar>
+    <md-content>
+      <md-list>
+        <md-list-item class="md-3-line" ng-repeat="post in posts">
+          <!-- <img ng-src="{{item.face}}?{{$index}}" class="face" alt="{{item.who}}"> -->
+          <div class="md-list-item-text">
+            <h3>{{post.author}}</h3>
+            <h4>{{post.text}}</h4>
+            <p>{{post.timestamp}}</p>
+          </div>
+        </md-list-item>
+      </md-list>
+    </md-content>
+  </div>
+</body>

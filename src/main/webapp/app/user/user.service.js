@@ -46,10 +46,24 @@
             .then(response => response.data)
         };
 
-    this.getFriendRequestOnProfile = function(id, loggedInUserId) {
-      return $http
-        .get('./api/users/' + id + '/getRequest/' + loggedInUserId)
-        .then(response => response.data)
+    this.getUserGroups = function(id) {
+          return $http
+            .get('./api/users/groups/' + id)
+            .then(response => response.data)
     };
+
+    this.getUsersPosts = (userId) =>{
+      return $http
+        .get('./api/posts/user/' + userId)
+        .then(response => response.data)
+      };
+
+    this.postToUserTimeline = (userId) =>{
+      return $http
+        .post('./api/posts/user/' + userId)
+        .then(response => reponse.data)
+    };
+
+
   }
 })();
