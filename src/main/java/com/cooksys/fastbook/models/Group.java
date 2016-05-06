@@ -1,8 +1,6 @@
 package com.cooksys.fastbook.models;
 
-// Generated May 4, 2016 4:12:00 PM by Hibernate Tools 4.3.1
-
-import static javax.persistence.GenerationType.IDENTITY;
+// Generated May 5, 2016 8:24:55 AM by Hibernate Tools 4.3.1
 
 import java.util.HashSet;
 import java.util.Set;
@@ -11,11 +9,14 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
+
+import static javax.persistence.GenerationType.IDENTITY;
+
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -28,31 +29,28 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 public class Group implements java.io.Serializable {
 
 	private Integer id;
-	private User user;
 	private String name;
 	
 	@JsonIgnore
 	private Set<Post> posts = new HashSet<Post>(0);
 	
 	@JsonIgnore
-	private Set<User> users = new HashSet<User>(0);
+	private Set<GroupUser> groupUsers = new HashSet<GroupUser>(0);
 
 	public Group()
 	{
 	}
 
-	public Group(User user, String name)
+	public Group(String name)
 	{
-		this.user = user;
 		this.name = name;
 	}
 
-	public Group(User user, String name, Set<Post> posts, Set<User> users)
+	public Group(String name, Set<Post> posts, Set<GroupUser> groupUsers)
 	{
-		this.user = user;
 		this.name = name;
 		this.posts = posts;
-		this.users = users;
+		this.groupUsers = groupUsers;
 	}
 
 	@Id
@@ -66,18 +64,6 @@ public class Group implements java.io.Serializable {
 	public void setId(Integer id)
 	{
 		this.id = id;
-	}
-
-	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "owner", nullable = false)
-	public User getUser()
-	{
-		return this.user;
-	}
-
-	public void setUser(User user)
-	{
-		this.user = user;
 	}
 
 	@Column(name = "name", nullable = false, length = 100)
@@ -103,16 +89,15 @@ public class Group implements java.io.Serializable {
 		this.posts = posts;
 	}
 
-	@ManyToMany(fetch = FetchType.LAZY)
-	@JoinTable(name = "group_user", catalog = "fastbook", joinColumns = { @JoinColumn(name = "group_id", nullable = false, updatable = false) }, inverseJoinColumns = { @JoinColumn(name = "user_id", nullable = false, updatable = false) })
-	public Set<User> getUsers()
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "group")
+	public Set<GroupUser> getGroupUsers()
 	{
-		return this.users;
+		return this.groupUsers;
 	}
 
-	public void setUsers(Set<User> users)
+	public void setGroupUsers(Set<GroupUser> groupUsers)
 	{
-		this.users = users;
+		this.groupUsers = groupUsers;
 	}
 
 }

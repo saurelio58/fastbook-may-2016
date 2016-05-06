@@ -1,8 +1,6 @@
 package com.cooksys.fastbook.models;
 
-// Generated May 4, 2016 4:12:00 PM by Hibernate Tools 4.3.1
-
-import static javax.persistence.GenerationType.IDENTITY;
+// Generated May 5, 2016 8:24:55 AM by Hibernate Tools 4.3.1
 
 import java.util.Date;
 import java.util.HashSet;
@@ -12,6 +10,9 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
+
+import static javax.persistence.GenerationType.IDENTITY;
+
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
@@ -41,6 +42,9 @@ public class Post implements java.io.Serializable {
 	
 	@JsonIgnore
 	private Set<Group> groups = new HashSet<Group>(0);
+	
+	@JsonIgnore
+	private Set<Like> likes = new HashSet<Like>(0);
 
 	public Post()
 	{
@@ -52,12 +56,14 @@ public class Post implements java.io.Serializable {
 		this.text = text;
 	}
 
-	public Post(User user, String text, Set<User> users, Set<Group> groups)
+	public Post(User user, String text, Set<User> users, Set<Group> groups,
+			Set<Like> likes)
 	{
 		this.user = user;
 		this.text = text;
 		this.users = users;
 		this.groups = groups;
+		this.likes = likes;
 	}
 
 	@Id
@@ -131,6 +137,18 @@ public class Post implements java.io.Serializable {
 	public void setGroups(Set<Group> groups)
 	{
 		this.groups = groups;
+	}
+
+	@ManyToMany(fetch = FetchType.LAZY)
+	@JoinTable(name = "like_post", catalog = "fastbook", joinColumns = { @JoinColumn(name = "post_id", nullable = false, updatable = false) }, inverseJoinColumns = { @JoinColumn(name = "like_id", nullable = false, updatable = false) })
+	public Set<Like> getLikes()
+	{
+		return this.likes;
+	}
+
+	public void setLikes(Set<Like> likes)
+	{
+		this.likes = likes;
 	}
 
 }

@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.cooksys.fastbook.dao.GroupDao;
 import com.cooksys.fastbook.models.Group;
+import com.cooksys.fastbook.models.User;
 
 @RestController
 @RequestMapping(value = "/groups")
@@ -26,10 +27,10 @@ public class GroupController
 		return groupDao.index();
 	}
 		
-	@RequestMapping(method = RequestMethod.POST)
-	public Group addGroup(@RequestBody Group group)
+	@RequestMapping(value= "/{id}", method = RequestMethod.POST)
+	public Group addGroup(@PathVariable Integer id, @RequestBody Group group)
 	{
-		return groupDao.add(group);
+		return groupDao.add(id, group);
 	}
 		
 	// fastbook/api/groups/{id}
@@ -38,4 +39,32 @@ public class GroupController
 	{
 		return groupDao.get(id);
 	}
+	
+	// fastbook/api/groups/users/{id}
+	@RequestMapping(value = "/users/{id}", method = RequestMethod.GET)
+	public List<User> getUsersInGroup(@PathVariable Integer id)
+	{
+		return groupDao.getUsersInGroup(id);
+	}
+	
+	//fastbook/api/groups/owner/{id}
+	@RequestMapping(value = "/owner/{id}", method = RequestMethod.GET)
+	public User getGroupsOwner(@PathVariable Integer id)
+	{
+		return groupDao.getGroupsOwner(id);
+	}
+	
+	//fastbook/api/groups/{id}
+	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
+	public Group addUserToGroup(@PathVariable Integer id, @RequestBody User user)
+	{
+		return groupDao.addUserToGroup(id, user);
+	}
+	
+	// fastbook/api/users/find/{name}
+		@RequestMapping(value = "/find/{name}", method = RequestMethod.GET)
+		public List<Group> queryGroups(@PathVariable String name)
+		{
+			return groupDao.queryGroups(name);
+		}
 }
