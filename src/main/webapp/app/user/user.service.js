@@ -11,6 +11,9 @@
 
     this.listOfUsers;
     this.profileUser;
+    this.post;
+    this.currentUser = accessService;
+
 
     this.setProfileUser = (user) => {
       $log.debug(user);
@@ -79,13 +82,17 @@
     this.getUsersPosts = (userId) =>{
       return $http
         .get('./api/posts/user/' + userId)
-        .then(response => response.data)
+        .then(response =>{
+          $log.debug(response.data);
+          return response.data;
+        });
       }
 
-    this.postToUserTimeline = (userId) =>{
+    this.postToUserTimeline = (post,loggedInUser) =>{
+
       return $http
-        .post('./api/posts/user/' + userId)
-        .then(response => reponse.data)
+        .post('./api/posts/user/' + loggedInUser.id, post)
+        .then(response => response.data)
     }
 
 
