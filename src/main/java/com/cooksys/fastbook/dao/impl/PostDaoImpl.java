@@ -45,7 +45,7 @@ public class PostDaoImpl implements PostDao {
 		@SuppressWarnings("unchecked")
 		List<Post> results = session
 				.createQuery(
-						"from Post p inner join p.users u where u.id = :userId order by p.id desc")
+						"select p from User u inner join u.posts p where u.id = :userId order by p.id desc")
 				.setInteger("userId", userId).list();
 
 		return results;
@@ -59,7 +59,7 @@ public class PostDaoImpl implements PostDao {
 		@SuppressWarnings("unchecked")
 		List<Post> results = session
 				.createQuery(
-						"from Post p inner join p.groups g where g.id = :groupId order by p.id desc")
+						"select p from Group g inner join g.posts p where g.id = :groupId order by p.id desc")
 				.setInteger("groupId", groupId).list();
 
 		return results;
