@@ -3,9 +3,9 @@
     .module('fastbook.group')
     .controller('GroupController', GroupController);
 
-    GroupController.$inject = ['groupService', 'userService', '$state', '$scope', '$mdDialog'];
+    GroupController.$inject = ['groupService', 'userService', '$state', '$scope', '$mdDialog', '$log'];
 
-    function GroupController(groupService, userService, $state, $scope) {
+    function GroupController(groupService, userService, $state, $scope, $log) {
 
       this.groupService = groupService;
 
@@ -29,8 +29,10 @@
         groupService.postToGroup(this.groupService);
 
       this.create = () => {
+        $log.debug($group.group.name);
+        $log.debug(userService.currentUser.id);
         groupService
-          .createGroup(userService.currentUser.id, this.group.name)
+          .createGroup(userService.currentUser.id, $group.group)
           .then(createdGroup => groupService.group = createdGroup)
           .$state.go('group', {id: groupService.group.id})
       }

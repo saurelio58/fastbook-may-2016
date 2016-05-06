@@ -59,7 +59,7 @@
         <md-input-container class="md-block">
             <input type="text" placeholder="Post something to the timeline...">
           </md-input-container> <br>
-            <md-button>Post</md-button>
+            <md-button class="md-raised">Post</md-button>
         <md-divider></md-divider>
           <md-card-content>
         </md-card-content>
@@ -84,14 +84,15 @@
     <md-card flex flex-gt-xs="20" layout-padding>
       <h2>{{$profileCtrl.profileUser.firstName}}'s Groups</h2>
       <md-divider></md-divider>
-      <md-button>Create New Group</md-button>
+      <md-button class="md-raised" ng-click="$state.go('groupCreate')">Create New Group</md-button>
       <md-divider></md-divider>
         <md-card-content>
-        <!--  <md-virtual-repeat-container style="width: 100vw; height: 100vh;">
-            <div md-virtual-repeat="group in $profileCtrl.groupList" class="repeated-item-vertical" layout="column" layout-padding>
-              <a ui-sref="group({id: group.id})">{{group.name}}</a>
+        <md-virtual-repeat-container style="height: 100vh;">
+            <div md-virtual-repeat="group in $profileCtrl.groupList" class="repeated-item-vertical" style="padding-top: 5px; padding-bottom: 5px; height: 30px;">
+              <a ui-sref="group({id: group.id})"style="display: block; padding-top: 5px; padding-bottom: 5px;">{{group.name}}</a>
+              <md-divider style="padding-top: 5px; padding-bottom: 5px;"></md-divider>
             </div>
-          </md-virtual-repeat-container> -->
+          </md-virtual-repeat-container>
           </md-card-content>
         </md-card>
 

@@ -30,16 +30,14 @@
      }
 
       this.getUsersInGroup = (id) => {
-
         return $http
           .get('./api/groups/users/' + id)
           .then(response => response.data)
       }
 
       this.getGroupPosts = (id) => {
-
         return $http
-          .get('./api/post/group/' + id)
+          .get('./api/posts/group/' + id)
           .then(response => response.data)
       }
 
@@ -82,7 +80,5 @@
           .get('./api/groups/owner/' + id)
           .then(response => response.data)
       }
-
     }
-
 })();
