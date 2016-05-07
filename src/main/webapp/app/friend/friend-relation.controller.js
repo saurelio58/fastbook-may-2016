@@ -28,23 +28,17 @@
 
       this.addFriend = () => {
         friendService.addFriendRequest(this.profileUser.id)
-          .then($state
-            .go($state.current, {}, {reload: true})
-          );
+          .then($state.reload());
       }
 
       this.denyRequest = () => {
         friendService.denyRequest(this.profileUser.id)
-          .then($state
-            .go($state.current, {}, {reload: true})
-          );
+          .then($state.reload());
       }
 
       this.acceptRequest = () => {
         friendService.acceptRequest(this.profileUser.id, this.relation)
-          .then($state
-            .go($state.current, {}, {reload: true})
-          );
+          .then($state.reload());
       }
 
     }
