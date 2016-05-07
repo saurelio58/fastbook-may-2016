@@ -28,6 +28,7 @@ public class UserController
 		return userDao.index();
 	}
 	
+	// fastbook/api/users/
 	@RequestMapping(method = RequestMethod.POST)
 	public User addUser(@RequestBody User user)
 	{
