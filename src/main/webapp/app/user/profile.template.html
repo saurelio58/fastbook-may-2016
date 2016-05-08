@@ -1,17 +1,17 @@
 <md-content class="md-padding" style="background-color: #d3d3d3; background: #d3d3d3;">
-  <div id="profileDiv" layout="row"  layout-xs="column" style="background-color: #d3d3d3; background: #d3d3d3;">
+  <div id="profileDiv" layout="row" layout-xs="column" style="background-color: #d3d3d3; background: #d3d3d3;">
     <md-card flex flex-gt-xs="20" layout-padding>
       <md-card-header>
-    <!--    <md-card-avatar>
-          <md-icon class="md-avatar-icon" md-svg-icon="img/icons/menu.svg"></md-icon>
-        </md-card-avatar> -->
+
         <md-card-header-text>
           <span class="md-title">{{$profileCtrl.profileUser.firstName}} {{$profileCtrl.profileUser.lastName}}</span>
           <span class="md-subhead">User since {{$profileCtrl.profileUser.joinDate | date}}</span>
         </md-card-header-text>
       </md-card-header>
       <img ng-src="app/user/zz_userdefaultphoto_large.png" class="md-card-image">
+
       <md-card-actions layout="row" layout-align="start center">
+
         <!-- Start Friend Relation Component -->
         <div ng-controller="FriendRelationController as relationCtrl">
           <div ng-if="relationCtrl.profileUser.id !== relationCtrl.loggedInUser.id">
@@ -42,71 +42,79 @@
           </div>
         </div>
         <!-- End Friend Relation Component -->
+
       </md-card-actions>
       <md-divider></md-divider>
       <md-card-content>
         <h2 class="md-headline">About Me</h2>
         <p>
-        Birthday: {{$profileCtrl.profileUser.birthDate | date}}<br>
-        Age: {{$profileCtrl.calculateAge()}}
+          Birthday: {{$profileCtrl.profileUser.birthDate | date}}
+          <br> Age: {{$profileCtrl.calculateAge()}}
         </p>
       </md-card-content>
     </md-card>
 
+
+    <!-- TIMELINE -->
     <md-card flex flex-gt-xs="40" layout-padding>
       <h2>Timeline</h2>
       <md-divider></md-divider>
-        <md-input-container>
-          <!-- <input type="text" placeholder="Post something on your timeline..."> -->
-          <label>Post something on your timeline...</label>
-          <textarea name="name" ng-model="$profileCtrl.userService.post.text" rows="8" cols="40" md-maxlength="140"></textarea>
-          </md-input-container> <br>
-            <md-button class="md-raised" ng-click="$profileCtrl.post()">Post</md-button>
-        <md-divider></md-divider>
-          <md-card-content layout="column">
-            <md-virtual-repeat-container flex style="height: 800vh;">
-              <div md-virtual-repeat="Object in $profileCtrl.usersPosts" class="repeated-item-vertical" style="padding-top: 5px; padding-bottom: 5px; height: 30px;">
-                <!-- <md-card-avatar>
+      <md-input-container>
+        <!-- <input type="text" placeholder="Post something on your timeline..."> -->
+        <label>Post something on your timeline...</label>
+        <textarea name="name" ng-model="$profileCtrl.userService.post.text" rows="8" cols="40" md-maxlength="140"></textarea>
+      </md-input-container>
+      <br>
+      <md-button class="md-raised" ng-click="$profileCtrl.post()">Post</md-button>
+      <md-divider></md-divider>
+      <md-card-content layout="column">
+        <md-virtual-repeat-container flex style="height: 60vh;">
+          <div md-virtual-repeat="Object in $profileCtrl.usersPosts" class="repeated-item-vertical" style="padding-top: 5px; padding-bottom: 5px; height: 30px;">
+            <!-- <md-card-avatar>
                 <img class="md-user-avatar md-media-sm" src="app/user/zz_userdefaultphoto_small.png">
               </md-card-avatar> -->
-              {{Object.post.text}}
-                <!-- <a ui-sref="profile({id: user.id})" style="display: block; padding-top: 5px; padding-bottom: 5px;">{{user.firstName}} {{user.lastName}}</a> -->
-                  <md-divider style="padding-top: 5px; padding-bottom: 5px;"></md-divider>
-              </div>
-            </md-virtual-repeat-container>
-        </md-card-content>
+            {{Object.post.text}}
+            <!-- <a ui-sref="profile({id: user.id})" style="display: block; padding-top: 5px; padding-bottom: 5px;">{{user.firstName}} {{user.lastName}}</a> -->
+            <md-divider style="padding-top: 5px; padding-bottom: 5px;"></md-divider>
+          </div>
+        </md-virtual-repeat-container>
+      </md-card-content>
     </md-card>
 
+
+    <!-- FRIENDS -->
     <md-card flex flex-gt-xs="20" layout-padding>
       <h2>{{$profileCtrl.profileUser.firstName}}'s Friends</h2>
       <md-divider></md-divider>
-        <md-card-content layout="column">
-            <md-virtual-repeat-container flex style="height: 100vh;">
-              <div md-virtual-repeat="user in $profileCtrl.friendList" class="repeated-item-vertical" style="padding-top: 5px; padding-bottom: 5px; height: 30px;">
-                <!-- <md-card-avatar>
+      <md-card-content layout="column">
+        <md-virtual-repeat-container flex style="height: 60vh;">
+          <div md-virtual-repeat="user in $profileCtrl.friendList" class="repeated-item-vertical" style="padding-top: 5px; padding-bottom: 5px; height: 30px;">
+            <!-- <md-card-avatar>
                 <img class="md-user-avatar md-media-sm" src="app/user/zz_userdefaultphoto_small.png">
               </md-card-avatar> -->
-                <a ui-sref="profile({id: user.id})" style="display: block; padding-top: 5px; padding-bottom: 5px;">{{user.firstName}} {{user.lastName}}</a>
-                  <md-divider style="padding-top: 5px; padding-bottom: 5px;"></md-divider>
-              </div>
-            </md-virtual-repeat-container>
-        </md-card-content>
-      </md-card>
+            <a ui-sref="profile({id: user.id})" style="display: block; padding-top: 5px; padding-bottom: 5px;">{{user.firstName}} {{user.lastName}}</a>
+            <md-divider style="padding-top: 5px; padding-bottom: 5px;"></md-divider>
+          </div>
+        </md-virtual-repeat-container>
+      </md-card-content>
+    </md-card>
 
+
+    <!-- GROUPS -->
     <md-card flex flex-gt-xs="20" layout-padding>
       <h2>{{$profileCtrl.profileUser.firstName}}'s Groups</h2>
       <md-divider></md-divider>
       <md-button class="md-raised" ng-click="$state.go('groupCreate')">Create New Group</md-button>
       <md-divider></md-divider>
-        <md-card-content>
-        <md-virtual-repeat-container style="height: 100vh;">
-            <div md-virtual-repeat="group in $profileCtrl.groupList" class="repeated-item-vertical" style="padding-top: 5px; padding-bottom: 5px; height: 30px;">
-              <a ui-sref="group({groupId: group.id})"style="display: block; padding-top: 5px; padding-bottom: 5px;">{{group.name}}</a>
-              <md-divider style="padding-top: 5px; padding-bottom: 5px;"></md-divider>
-            </div>
-          </md-virtual-repeat-container>
-          </md-card-content>
-        </md-card>
+      <md-card-content>
+        <md-virtual-repeat-container flex style="height: 60vh;">
+          <div md-virtual-repeat="group in $profileCtrl.groupList" class="repeated-item-vertical" style="padding-top: 5px; padding-bottom: 5px; height: 30px;">
+            <a ui-sref="group({groupId: group.id})" style="display: block; padding-top: 5px; padding-bottom: 5px;">{{group.name}}</a>
+            <md-divider style="padding-top: 5px; padding-bottom: 5px;"></md-divider>
+          </div>
+        </md-virtual-repeat-container>
+      </md-card-content>
+    </md-card>
 
-    </div>
+  </div>
 </md-content>
