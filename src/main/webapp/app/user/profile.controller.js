@@ -7,7 +7,7 @@
 
   ProfileController.$inject = [
     'user', 'userService', 'accessService', 'userFriendList', 'groupService',
-    'userGroupList', '$state', '$stateParams','$log','userPosts', '$scope'
+    'userGroupList', '$state', '$stateParams', '$log', 'userPosts', '$scope'
   ];
 
   function ProfileController(
@@ -22,6 +22,15 @@
     this.groupList = userGroupList;
     this.userService = userService;
     this.usersPosts = userPosts;
+
+    // only show 'Create Group' button on the logged in user's profile
+    if (this.profileUser.id == this.loggedInUser.id) {
+      this.showCreateGroup = true;
+    } else {
+      this.showCreateGroup = false;
+    }
+
+    this.showCreateGroup
 
     $log.debug(this.profileUser)
     $log.debug(this.profileUser.id)
@@ -40,13 +49,17 @@
       return Math.abs(ageDate.getUTCFullYear() - 1970);
     };
 
-    this.post=() => {
-      $log.debug('Trying to post')
+    this.post = () => {
+      $log.debug('ProfileController.post-init')
       $scope.date = new Date();
       this.userService.post.timestamp = $scope.date;
       this.userService.post.user = this.loggedInUser;
-        userService.postToUserTimeline(this.userService.post, this.loggedInUser)
-            .then(() => $state.reload());
+      userService
+        .postToUserTimeline(this.userService.post, this.loggedInUser)
+        .then(() => {
+          this.userService.post = null;
+          $state.reload();
+        });
     }
 
   }

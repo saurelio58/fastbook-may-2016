@@ -10,9 +10,9 @@
       </md-card-header>
       <img ng-src="app/user/zz_userdefaultphoto_large.png" class="md-card-image">
 
+      <!-- Start Friend Relation Component -->
+      <!-- appears when viewing the profile of anyone that is not the logged in user -->
       <md-card-actions layout="row" layout-align="start center">
-
-        <!-- Start Friend Relation Component -->
         <div ng-controller="FriendRelationController as relationCtrl">
           <div ng-if="relationCtrl.profileUser.id !== relationCtrl.loggedInUser.id">
 
@@ -41,10 +41,11 @@
             </div>
           </div>
         </div>
-        <!-- End Friend Relation Component -->
-
       </md-card-actions>
+
       <md-divider></md-divider>
+
+      <!-- logged in user details -->
       <md-card-content>
         <h2 class="md-headline">About Me</h2>
         <p>
@@ -60,7 +61,6 @@
       <h2>Timeline</h2>
       <md-divider></md-divider>
       <md-input-container>
-        <!-- <input type="text" placeholder="Post something on your timeline..."> -->
         <label>Post something on your timeline...</label>
         <textarea name="name" ng-model="$profileCtrl.userService.post.text" rows="8" cols="40" md-maxlength="140"></textarea>
       </md-input-container>
@@ -70,9 +70,6 @@
       <md-card-content layout="column">
         <md-virtual-repeat-container flex style="height: 60vh;">
           <div md-virtual-repeat="Object in $profileCtrl.usersPosts" class="repeated-item-vertical" style="padding-top: 5px; padding-bottom: 5px; height: 30px;">
-            <!-- <md-card-avatar>
-                <img class="md-user-avatar md-media-sm" src="app/user/zz_userdefaultphoto_small.png">
-              </md-card-avatar> -->
             {{Object.post.text}}
             <!-- <a ui-sref="profile({id: user.id})" style="display: block; padding-top: 5px; padding-bottom: 5px;">{{user.firstName}} {{user.lastName}}</a> -->
             <md-divider style="padding-top: 5px; padding-bottom: 5px;"></md-divider>
@@ -104,7 +101,9 @@
     <md-card flex flex-gt-xs="20" layout-padding>
       <h2>{{$profileCtrl.profileUser.firstName}}'s Groups</h2>
       <md-divider></md-divider>
-      <md-button class="md-raised" ng-click="$state.go('groupCreate')">Create New Group</md-button>
+      <md-button class="md-raised" ng-click="$state.go('groupCreate')" ng-if="$profileCtrl.showCreateGroup">
+        Create New Group
+      </md-button>
       <md-divider></md-divider>
       <md-card-content>
         <md-virtual-repeat-container flex style="height: 60vh;">
