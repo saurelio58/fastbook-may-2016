@@ -30,24 +30,24 @@
     };
 
     this.login = (credentials) => {
-      $log.debug('Calling AccessService.login()');
+      $log.debug('accessService.login-init');
       $http
         .post('./api/users/login', credentials.email) // returns response
         .then(response => response.data) // t response, r user
         .then(user => {
           if (bcrypt.compareSync(credentials.password, user.password)) {
-            $log.debug('User Authenticated');
+            $log.debug('accessService-User Authenticated');
             this.currentUser = user;
             delete this.currentUser.password;
-            $log.debug(this.currentUser);
+            $log.debug('accessService-current user=' + this.currentUser);
             credentials = undefined;
             $location.path('users/' + this.currentUser.id);
           } else {
-            $log.debug('invalid username or password');
+            $log.debug('accessService-invalid username or password');
             this.currentuser = undefined;
           }
         })
-        .catch(error => $log.debug(JSON.stringify(error)));
+        .catch(error => $log.debug('accessService-catch error=' + JSON.stringify(error)));
     }
 
     this.logout = () => {

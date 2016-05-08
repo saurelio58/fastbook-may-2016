@@ -17,7 +17,7 @@
 
     this.getPostsForUser = function(userId) {
       return $http
-        .get('./api/posts/user/' + userId)
+        .get('./api/posts/user/' + userId + '/' + accessService.currentUser.id)
         .then(response => {
           // $log.debug(response);
           return response.data;

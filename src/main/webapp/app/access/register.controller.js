@@ -9,7 +9,7 @@
 
   function RegisterController($scope, accessService, $state, $log) {
 
-    $log.debug('Creating $register');
+    $log.debug('RegisterController-init');
     $scope.date = new Date();
 
     this.maxDate = new Date();
@@ -26,7 +26,7 @@
     }
 
     this.goToLogin = () => {
-      $log.debug('Clicked goToLogin');
+      $log.debug('RegisterController-goToLogin-init');
       $state.go('login');
     }
   }

@@ -10,10 +10,13 @@
   function LoginController(accessService, $state, $window, $log) {
     this.credentials;
 
-    $log.debug('Creating LoginController')
+    $log.debug('LoginController-init')
+
+
     this.credentials;
+
     this.login = () => {
-      $log.debug('Calling LoginController.login()')
+      $log.debug('LoginController.login-init')
       accessService.login(this.credentials);
     }
   }

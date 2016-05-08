@@ -10,6 +10,7 @@
   function FriendService(accessService, $http, $log) {
 
     this.acceptFriendRequestFromList = function(friend) {
+      $log.debug('friendService-acceptFriendRequestFromList:');
       $log.debug('./api/users/' + accessService.currentUser.id + '/acceptRequestFromList');
       return $http
         .patch('./api/users/' + accessService.currentUser.id + '/acceptRequestFromList', friend)
@@ -17,6 +18,7 @@
     };
 
     this.rejectFriendRequestFromList = function(friend) {
+      $log.debug('friendService-rejectFriendRequestFromList:');
       $log.debug('./api/users/' + accessService.currentUser.id + '/denyRequestFromList/' + friend.id.sentId);
       return $http
         .delete('./api/users/' + accessService.currentUser.id + '/denyRequestFromList/' + friend.id.sentId)
@@ -31,16 +33,16 @@
 
     this.getFriendRequests = function(id) {
 
-        $log.debug('friendService - getFriendRequests - initialize');
+      $log.debug('friendService-getFriendRequests-init');
 
-        return $http
-          .get('./api/users/' + id + '/my_pending_requests')
-          .then(response => {
-            $log.debug('friendService - getFriendRequests - response ' + response);
-            return response.data
+      return $http
+        .get('./api/users/' + id + '/my_pending_requests')
+        .then(response => {
+          $log.debug('friendService-getFriendRequests-response=' + response);
+          return response.data
 
-          });
-      };
+        });
+    };
 
     this.addFriendRequest = function(userId) {
       return $http
@@ -55,7 +57,7 @@
     }
 
     this.acceptRequest = function(userId, friend) {
-      $log.debug('Accepting friend: ' + friend);
+      $log.debug('friendService-acceptRequest-friend:=' + friend);
       return $http
         .patch('./api/users/' + userId + '/acceptRequest', friend)
         .then(response => response.data);

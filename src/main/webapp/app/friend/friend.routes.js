@@ -11,7 +11,7 @@
         controllerAs: '$requestCtrl',
         resolve: {
           friendRequestsToResolve: ['friendService', 'accessService', function(friendService, accessService) {
-            console.log(accessService.currentUser.id);
+            console.log('friendRoutes-accessService.currentUser.id=' + accessService.currentUser.id);
             return friendService.getFriendRequests(accessService.currentUser.id);
           }],
         },
