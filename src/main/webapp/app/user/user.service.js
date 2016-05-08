@@ -54,14 +54,15 @@
             .then(response => response.data)
     };
 
-    this.getUsersPosts = (userId) =>{
-      return $http
-        .get('./api/posts/user/' + userId)
-        .then(response =>{
-          $log.debug(response.data);
-          return response.data;
-        });
-      }
+    // this.getUsersPosts = (userId, loggedInUser) =>{
+    //   return $http
+    //     .get('./api/posts/user/getPosts' + userId + '/' + loggedInUser)
+    //     .then(response =>{
+    //       $log.debug('userService-getUserPosts:');
+    //       $log.debug(response.data);
+    //       return response.data;
+    //     });
+    //   }
 
     this.postToUserTimeline = (post,loggedInUser) =>{
 

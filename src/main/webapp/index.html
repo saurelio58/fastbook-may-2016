@@ -23,6 +23,7 @@
 <base href="/fastbook/" />
 
 <script src="./app/user/user.module.js"></script>
+<script src="./app/user/post.service.js"></script>
 <script src="./app/user/profile.controller.js"></script>
 <script src="./app/user/user.service.js"></script>
 <script src="./app/user/user.routes.js"></script>
@@ -75,7 +76,7 @@
           Register
         </md-button>
         <md-button class="md-raised" aria-label="Profile" ng-click="$state.go('profile', {id: app.accessService.currentUser.id})" ng-if="app.accessService.isLoggedIn()">
-          Profile
+          My Profile
         </md-button>
         <md-button class="md-raised" aria-label="Friend Requests" ng-click="$state.go('friendRequests', {id: app.accessService.currentUser.id})" ng-if="app.accessService.isLoggedIn()">
           Friend Requests

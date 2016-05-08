@@ -16,8 +16,8 @@
           userFriendList: ['userService', '$stateParams', function(userService, $stateParams){
             return userService.getUserFriends($stateParams.id);
           }],
-          userPosts: ['userService', '$stateParams', function (userService, $stateParams) {
-            return userService.getUsersPosts($stateParams.id, accessService.currentUser.id);
+          userPosts: ['postService', 'accessService', '$stateParams',  function (postService, accessService, $stateParams) {
+            return postService.getPostsForUser($stateParams.id, accessService.currentUser.id);
           }],
           userGroupList: ['userService', '$stateParams', function(userService, $stateParams){
             return userService.getUserGroups($stateParams.id);

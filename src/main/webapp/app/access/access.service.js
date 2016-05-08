@@ -39,7 +39,8 @@
             $log.debug('accessService-User Authenticated');
             this.currentUser = user;
             delete this.currentUser.password;
-            $log.debug('accessService-current user=' + this.currentUser);
+            $log.debug('accessService-current user=');
+            $log.debug(this.currentUser);
             credentials = undefined;
             $location.path('users/' + this.currentUser.id);
           } else {

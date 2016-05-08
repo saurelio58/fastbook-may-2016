@@ -36,8 +36,8 @@ public class PostController {
 	 * @param userId
 	 * @return list of posts for a user
 	 */
-	// fastbook/api/posts/user/{userId}/{loggedInUser}
-	@RequestMapping(value = "/user/getPosts/{userId}/{loggedInUser}", method = RequestMethod.POST)
+	// fastbook/api/posts/user/getPosts/{userId}/{loggedInUser}
+	@RequestMapping(value = "/user/getPosts/{userId}/{loggedInUser}", method = RequestMethod.GET)
 	public List<PostWithLikeData> getPostsForUser(@PathVariable Integer userId,
 			@PathVariable Integer loggedInUser) {
 		return postDao.getPostsForUser(userId, loggedInUser);

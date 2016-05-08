@@ -19,11 +19,11 @@
       friendService.getRelation(this.profileUser.id)
         .then(relation => {
           this.relation = relation;
-          $log.debug('FriendRelationController-relation=' + this.relation);
-          $log.debug('Relationship of users, sentId: ' + this.relation.id.sentId);
-          $log.debug('Relationship of users, receivedId: ' + this.relation.id.receivedId);
-          $log.debug('Relationship of users, status: ' + this.relation.status);
-          $log.debug('Executing this.relation !== undefined: ' + (this.relation !== undefined));
+          // $log.debug('FriendRelationController-relation=' + this.relation);
+          // $log.debug('Relationship of users, sentId: ' + this.relation.id.sentId);
+          // $log.debug('Relationship of users, receivedId: ' + this.relation.id.receivedId);
+          // $log.debug('Relationship of users, status: ' + this.relation.status);
+          // $log.debug('Executing this.relation !== undefined: ' + (this.relation !== undefined));
         });
 
       this.addFriend = () => {

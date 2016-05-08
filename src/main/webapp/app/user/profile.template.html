@@ -65,11 +65,11 @@
         <md-divider></md-divider>
           <md-card-content layout="column">
             <md-virtual-repeat-container flex style="height: 800vh;">
-              <div md-virtual-repeat="post in $profileCtrl.usersPosts" class="repeated-item-vertical" style="padding-top: 5px; padding-bottom: 5px; height: 30px;">
+              <div md-virtual-repeat="Object in $profileCtrl.usersPosts" class="repeated-item-vertical" style="padding-top: 5px; padding-bottom: 5px; height: 30px;">
                 <!-- <md-card-avatar>
                 <img class="md-user-avatar md-media-sm" src="app/user/zz_userdefaultphoto_small.png">
               </md-card-avatar> -->
-              {{post.text}}
+              {{Object.post.text}}
                 <!-- <a ui-sref="profile({id: user.id})" style="display: block; padding-top: 5px; padding-bottom: 5px;">{{user.firstName}} {{user.lastName}}</a> -->
                   <md-divider style="padding-top: 5px; padding-bottom: 5px;"></md-divider>
               </div>

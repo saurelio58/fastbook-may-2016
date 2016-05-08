@@ -5,21 +5,22 @@
     .module('fastbook.user')
     .service('postService', PostService);
 
-  PostService.$inject = ['$http', '$log'];
+  PostService.$inject = ['$http', '$log', 'accessService'];
 
-  function PostService($http, $log) {
+  function PostService($http, $log, accessService) {
 
-    this.getAllUsers = function() {
+    // this.getAllUsers = function() {
+    //   return $http
+    //     .get('./api/posts/')
+    //     .then(response => response.data);
+    // };
+
+    this.getPostsForUser = function(userId, loggedInUser) {
       return $http
-        .get('./api/posts/')
-        .then(response => response.data);
-    };
-
-    this.getPostsForUser = function(userId) {
-      return $http
-        .get('./api/posts/user/' + userId + '/' + accessService.currentUser.id)
+        .get('./api/posts/user/getPosts/' + userId + '/' + loggedInUser)
         .then(response => {
-          // $log.debug(response);
+          $log.debug('postService-getPostsForUser:');
+          $log.debug(response.data);
           return response.data;
         });
     };
