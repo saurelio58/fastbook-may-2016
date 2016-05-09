@@ -69,9 +69,10 @@
       <md-divider></md-divider>
       <md-card-content layout="column">
         <md-virtual-repeat-container flex style="height: 60vh;">
-          <div md-virtual-repeat="Object in $profileCtrl.usersPosts" class="repeated-item-vertical" style="padding-top: 5px; padding-bottom: 5px; height: 30px;">
-            {{Object.post.text}}
-            <!-- <a ui-sref="profile({id: user.id})" style="display: block; padding-top: 5px; padding-bottom: 5px;">{{user.firstName}} {{user.lastName}}</a> -->
+          <div md-virtual-repeat="Object in $profileCtrl.usersPosts" class="repeated-item-vertical" style="padding-top: 5px; padding-bottom: 5px; min-height: 100px;">
+            {{Object.post.text}}<br>
+            <a ui-sref="profile({id: Object.post.user.id})" style="display: block; padding-top: 5px; padding-bottom: 5px;">{{Object.post.user.firstName}} {{Object.post.user.lastName}}</a>
+            {{Object.post.timestamp  | date}}
             <md-divider style="padding-top: 5px; padding-bottom: 5px;"></md-divider>
           </div>
         </md-virtual-repeat-container>
