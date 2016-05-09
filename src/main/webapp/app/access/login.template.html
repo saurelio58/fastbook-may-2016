@@ -1,30 +1,33 @@
 <body ng-app="fastbook">
   <div class="space-bot textCenter">
-     <h1>Login</h1>
+    <h1>Login</h1>
     <div class="divider"></div>
-  <form class="form-login" name="login" novalidate>
-    <div class="input-field">
-      <div class="">
-        <input id="email" type="email" name="email" ng-model="$login.credentials.email" class="validate" required>
+    <form class="form-login" name="login" novalidate>
+      <div class="input-field">
+        <div class="">
+          <input id="email" type="email" name="email" ng-model="$login.credentials.email" class="validate" required>
+        </div>
+        <div class="">
+          <label for="email">Email</label>
+        </div>
       </div>
-      <div class="">
-        <label for="email">Email</label>
+      <p class="alert alert-danger" ng-show="form-login.email.$error.email">Your email is invalid.</p>
+      <div class="input-field">
+        <div class="">
+          <input id="password" type="password" name="password" ng-model="$login.credentials.password" ng-minlength='1' class="validate" required>
+        </div>
+        <div class="">
+          <label for="password">Password</label>
+        </div>
       </div>
-    </div>
-    <p class="alert alert-danger" ng-show="form-login.email.$error.email">Your email is invalid.</p>
-    <div class="input-field">
-      <div class="">
-        <input id="password" type="password" name="password" ng-model="$login.credentials.password" ng-minlength='6' class="validate" required>
+      <p class="alert alert-danger" ng-show="form-login.password.$error.minlength || form.password.$invalid">Your password must be at least 1 character.</p>
+      <div class="space-top textCenter">
+        <button type="button" class="waves-effect waves-light btn done" ng-disabled="form-login.$invalid" ng-click=$login.login()>
+          <i class="material-icons left"></i> Login
+        </button>
+        <button type="button" class="waves-effect waves-light btn cancel" ng-click=$login.reset()>
+          <i class="material-icons left"></i>Reset
+        </button>
       </div>
-      <div class="">
-        <label for="password">Password</label>
-      </div>
-    </div>
-    <p class="alert alert-danger" ng-show="form-login.password.$error.minlength || form.password.$invalid">Your password must be at least 6 characters.</p>
-    <div class="space-top textCenter">
-      <button type="button" class="waves-effect waves-light btn done" ng-disabled="form-login.$invalid" ng-click=$login.login()>
-        <i class="material-icons left"></i> Login
-      </button>
-    </div>
-  </form>
+    </form>
 </body>

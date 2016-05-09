@@ -16,7 +16,7 @@
     $locationProvider,
     $mdThemingProvider
   ) {
-    $urlRouterProvider.otherwise('/');
+    $urlRouterProvider.otherwise('/login');
     $locationProvider.html5Mode(true);
 
     $mdThemingProvider.theme('docs-dark', 'default')

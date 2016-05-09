@@ -25,6 +25,11 @@
         })
     }
 
+    this.reset = () => {
+      this.errorMessage = null;
+      this.user = null;
+    }
+
     this.goToLogin = () => {
       $log.debug('RegisterController-goToLogin-init');
       $state.go('login');

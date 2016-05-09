@@ -66,13 +66,13 @@
         <h1>
           Fastbook
         </h1>
-        <md-button class="md-raised" aria-label="Login" ng-click="$state.go('login')" ng-if="app.accessService.isLoggedOut()">
+        <md-button class="md-raised" aria-label="Login" ng-click="$state.go('login')" ng-if="$state.is('register')">
           Login
         </md-button>
         <md-button class="md-raised" aria-label="Logout" ng-click="app.accessService.logout()" ng-if="app.accessService.isLoggedIn()">
           Logout
         </md-button>
-        <md-button class="md-raised" aria-label="Register" ng-click="$state.go('register')" ng-if="app.accessService.isLoggedOut()">
+        <md-button class="md-raised" aria-label="Register" ng-click="$state.go('register')" ng-if="$state.is('login')">
           Register
         </md-button>
         <md-button class="md-raised" aria-label="Profile" ng-click="$state.go('profile', {id: app.accessService.currentUser.id})" ng-if="app.accessService.isLoggedIn()">
