@@ -32,7 +32,7 @@
 
     this.login = (credentials) => {
       $log.debug('accessService.login-init');
-      $http
+      return $http
         .post('./api/users/login', credentials.email) // returns response
         .then(response => response.data) // t response, r user
         .then(user => {

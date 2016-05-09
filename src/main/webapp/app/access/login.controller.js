@@ -17,13 +17,13 @@
 
     this.login = () => {
       $log.debug('LoginController.login-init')
+      this.errorMessage = null;
       accessService
         .login(this.credentials)
-        // User or password invalid - we don't come back if the user logs in
-        // get error in console w/ following code
-        // .then(result => {
-        //   this.errorMessage = 'Invalid email or password!';
-        // })
+        .then(result => {
+          // User or password invalid - we don't come back if the user logs in
+          this.errorMessage = 'Invalid email or password!';
+        })
     }
 
     this.reset = () => {
